@@ -1,0 +1,22 @@
+.lineChart{
+    margin-top: 4%;
+    height: 450px;
+  }
+  .table{
+    color: #fff !important;
+    max-width: 100%;
+    overflow-y: hidden;
+    th{
+      color: #FFD96A !important;
+      font-size: 16px !important;
+      white-space: nowrap;
+    }
+    td{
+      white-space: nowrap;
+    }
+  }
+  .custmPage{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+  }

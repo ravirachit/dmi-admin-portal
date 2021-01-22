@@ -1,0 +1,8 @@
+<aside>
+	<app-navbar></app-navbar>
+</aside>
+<img [src]="domSanatize.bypassSecurityTrustUrl(blogDetail[0].meta_image)" alt="" style="margin: 0 auto 20px auto;max-width: 100%;display: block;max-height: 350px;">
+<br>
+<h5>{{blogDetail[0].blog_title}}</h5>
+
+<p [innerHTML]="description"></p>

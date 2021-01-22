@@ -1,0 +1,26 @@
+<aside>
+	<app-navbar></app-navbar>
+</aside>
+<h4 class="heading"><span>Blog Management</span> <span><a routerLink="/adblog">Add New Blog<img
+    src="assets/images/add.svg"></a></span><a routerLink="/categorylist">Manage Category</a></h4>
+<div class="row" *ngIf="blogData">
+    <div class="col-sm-4" *ngFor="let blog of blogData.data">
+        <div class="statbox">
+            <div ngbDropdown class="drop">
+                <button id="dropdownBasic1" ngbDropdownToggle><img src="assets/images/menu-icon.svg"></button>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                    <a (click)="blogDetail(blog)">View</a>
+                    <a (click)="updateBlog(blog)">Edit</a>
+                    <a (click)="deleteBlog(blog)">Delete</a>
+                </div>
+            </div>
+            <!-- <img [src]="blog.meta_image"> -->
+            <img [src]="domSanatize.bypassSecurityTrustUrl(blog.meta_image)" alt=""
+                    class="addblogimg">
+            <h4>{{blog.blog_title}}</h4>
+        </div>
+    </div>
+</div>
+
+<ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="collectionSize" (pageChange)="loadPage($event)">
+</ngb-pagination>

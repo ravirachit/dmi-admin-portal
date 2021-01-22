@@ -1,0 +1,235 @@
+<aside>
+	<app-navbar></app-navbar>
+</aside>
+
+<div class="col-sm-12">
+    <div class="statbox">
+        <div class="searchform">
+            <button><img src="assets/images/search.svg"></button>
+            <input class="input" placeholder="Enter Value Here" type="text" [(ngModel)]="searchValue" />
+
+            <select [(ngModel)]="selectedOptn" class="blogStatus">
+                <option *ngFor="let optn of options" [value]="optn.id">{{optn.name}}</option>
+            </select>
+
+            <div class="searchbtn">
+                <button class="btn btn-dark btn-position" (click)="searchData()">Search</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="loan_loader" *ngIf="showLoader" align="center"><img src="assets/loading.gif" height="45"></div>
+
+<div class="col-sm-12" style="margin-top:25px">
+    <div class="statbox">
+        <table class="table" *ngIf="paymentExist">
+            <thead>
+                <tr>
+                    <th>S.No.</th>
+                    <th scope="col" sortable="name">Name</th>
+                    <th scope="col" sortable="mobile" (sort)="onSort($event)">List Name</th>
+                    <th scope="col" sortable="mobile" (sort)="onSort($event)">EMI</th>
+                    <th scope="col" sortable="amount" (sort)="onSort($event)">Amount Due</th>
+                    <th scope="col" sortable="amount" (sort)="onSort($event)">Mobile</th>
+                    <th scope="col" sortable="amount" (sort)="onSort($event)">Loan Name</th>
+                    <th scope="col" sortable="amount" (sort)="onSort($event)">Payment Link</th>
+                    <th scope="col" sortable="amount" (sort)="onSort($event)">Action</th>
+                </tr>
+            </thead>
+    
+            <tbody *ngIf="paymentResponse.length>0">
+                <tr *ngFor="let payments of paymentResponse;let index = index">
+                    <td>
+                        <ngb-highlight [result]="index+1"></ngb-highlight>
+                    </td>
+                    <td>
+                        <ngb-highlight [result]="payments.name"></ngb-highlight>
+                    </td>
+                    <td>
+                        <ngb-highlight [result]="payments.filename"></ngb-highlight>
+                    </td>
+                    <td>
+                        <ngb-highlight [result]="payments.amount"></ngb-highlight>
+                    </td>
+                    <td>
+                        <ngb-highlight [result]="payments.total_outstanding_amount"></ngb-highlight>
+                    </td>
+                    <td>
+                        <ngb-highlight [result]="payments.phone"></ngb-highlight>
+                    </td>
+                    <td>
+                        <ngb-highlight [result]="payments.loan_id"></ngb-highlight>
+                    </td>
+                    <td>
+                        <button *ngIf="payments.payment_link_status == 'Expired'" class="btn btn-dark btn-position createlink" 
+                        (click)="createLinkModal(payments.id,payments.phone,payments.amount,payments.Loan_Name)" data-toggle="modal" data-target="#generateLink" data-backdrop="static" data-keyboard="false">Create Link</button>
+                        <ng-container *ngIf="payments.payment_link_status == 'Active'">
+                            <ngb-highlight [result]="payments.payment_link"></ngb-highlight><br>
+                            <ngb-highlight [result]="payments.payment_link_creation_date"></ngb-highlight><br>
+                            <ngb-highlight [result]="payments.other_amount"></ngb-highlight><br>
+                        </ng-container>
+                    </td>
+                    <td>
+                        <!-- <button class="btn btn-dark btn-position" (click)="sendSMS(payments.id,payments.collection_id)">Send SMS</button> -->
+                        <button [disabled]="payments.payment_link_status == 'Expired'" class="btn btn-dark btn-position" (click)="sendSMSmodal(payments.id,payments.phone)" data-toggle="modal" data-target="#sendSMS" data-backdrop="static" data-keyboard="false">Send SMS</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="backdrop" id="sendSMS" [ngStyle]="{'display':displayDataBase}">
+            <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayDataBase}">
+                <div class="modal-dialog1 isOpen" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="row floatRight">
+                                <label class="banking_checkbox_container">Registered Number
+                                    <input (click)="registeredNum = 0" type="radio" (change)="checkChange(0)" [checked]="registeredNum==0">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="banking_checkbox_container">Other
+                                    <input (click)="registeredNum = 1" type="radio" (change)="checkChange(1)" [checked]="registeredNum==1">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                            <input class="dialogInput" type="text" [(ngModel)]="entered_number" [disabled]="registeredNum == 0">
+                            <div class="row buttns">
+                                <button class="submitBtn" (click)="sendSMS()">Submit</button>
+                                <button class="submitBtn" style="margin-left: 10px" (click)="cancel()">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="backdrop" id="generateLinkSales" [ngStyle]="{'display':displayLinkDataBase}">
+            <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayLinkDataBase}">
+                <div class="modal-dialog1 isOpen" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="row floatRight">
+                                <label class="banking_checkbox_container">EMI
+                                    <input (click)="amountReg = 0" type="radio" (change)="checkChangeLink(0)" [checked]="amountReg==0">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="banking_checkbox_container">Other
+                                    <input (click)="amountReg = 1" type="radio" (change)="checkChangeLink(1)" [checked]="amountReg==1">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                            <input class="dialogInput" type="text" [(ngModel)]="amountEntered" [disabled]="amountReg == 0">
+                            <div class="row buttns">
+                                <button class="submitBtn" (click)="createLink()">Submit</button>
+                                <button class="submitBtn" style="margin-left: 10px" (click)="cancel()">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SalesForce -->
+
+        <table class="table" *ngIf="paymentExist==false">
+            <thead>
+                <tr>
+                    <th>S.No.</th>
+                    <th scope="col" sortable="name">Mobile</th>
+                    <th scope="col" sortable="mobile" (sort)="onSort($event)">Name</th>
+                    <th scope="col" sortable="amount" (sort)="onSort($event)">Loan Name</th>
+                    <th scope="col" sortable="amount" (sort)="onSort($event)">EMI</th>
+                    <th scope="col" sortable="amount" (sort)="onSort($event)">Amount Due</th>
+                    <th scope="col" sortable="amount" (sort)="onSort($event)">Payment Link</th>
+                    <th scope="col" sortable="amount" (sort)="onSort($event)">Action</th>
+                </tr>
+            </thead>
+    
+            <tbody *ngIf="salesForceResponse.length>0">
+                <tr *ngFor="let payments of salesForceResponse;let index = index">
+                    <td>
+                        <ngb-highlight [result]="index+1"></ngb-highlight>
+                    </td>
+                    <td>
+                        <ng-container *ngIf="payments.Phone === null"><ngb-highlight [result]="payments.Mobile"></ngb-highlight></ng-container>
+                        <ng-container *ngIf="payments.Phone !== null"><ngb-highlight [result]="payments.Phone"></ngb-highlight></ng-container>
+                    </td>
+                    <td>
+                        <ngb-highlight [result]="payments.First_Name"></ngb-highlight>&nbsp;<ngb-highlight [result]="payments.Last_Name"></ngb-highlight>
+                    </td>
+                    <td>
+                        <ngb-highlight [result]="payments.Loan_Name"></ngb-highlight>
+                    </td>
+                    <td>
+                        <ngb-highlight [result]="payments.Amount"></ngb-highlight>
+                    </td>
+                    <td>
+                        <ngb-highlight [result]="payments.total_outstanding_amount"></ngb-highlight>
+                    </td>
+                    <td>
+                        <button class="btn btn-dark btn-position createlink"  (click)="createLinkModalSales(payments.Phone,payments.Mobile,payments.Amount,payments.Loan_Name)" [disabled]='disableBtn'>Create Link</button>
+                    </td>
+                    <td>
+                        <!-- <button class="btn btn-dark btn-position" (click)="sendSMSSales()">Send SMS</button> -->
+                        <button [disabled]="payments.payment_link == '' || payments.payment_link == 'null'" class="btn btn-dark btn-position" (click)="sendSMSmodalSales(payments.Phone,payments.Mobile)">Send SMS</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+        <div class="backdrop" [ngStyle]="{'display':display}">
+            <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':display}">
+                <div class="modal-dialog1 isOpen" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="row floatRight">
+                                <label class="banking_checkbox_container">Registered Number
+                                    <input (click)="registeredNum = 0" type="radio" (change)="checkChange(0)" [checked]="registeredNum==0" readonly>
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="banking_checkbox_container">Other
+                                    <input (click)="registeredNum = 1" type="radio" (change)="checkChange(1)" [checked]="registeredNum==1">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                            <input class="dialogInput" type="text" [(ngModel)]="entered_number" [disabled]="registeredNum == 0">
+                            <div class="row buttns">
+                                <button class="submitBtn" (click)="sendSMSSales()">Submit</button>
+                                <button class="submitBtn" style="margin-left: 10px" (click)="cancel()">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="backdrop" id="generateLinkSales" [ngStyle]="{'display':displayLink}">
+            <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayLink}">
+                <div class="modal-dialog1 isOpen" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="row floatRight">
+                                <label class="banking_checkbox_container">EMI
+                                    <input (click)="amountReg = 0" type="radio" (change)="checkChangeLink(0)" [checked]="amountReg==0" readonly>
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="banking_checkbox_container">Other
+                                    <input (click)="amountReg = 1" type="radio" (change)="checkChangeLink(1)" [checked]="amountReg==1">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                            <input class="dialogInput" type="text" [(ngModel)]="amountEntered" [disabled]="amountReg == 0">
+                            <div class="row buttns">
+                                <button class="submitBtn" (click)="createLinkSalesForce()">Submit</button>
+                                <button class="submitBtn" style="margin-left: 10px" (click)="cancel()">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+</div>

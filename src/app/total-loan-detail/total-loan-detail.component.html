@@ -1,0 +1,55 @@
+<aside>
+	<app-navbar></app-navbar>
+</aside>
+<h4 class="heading"><span>Total Loans</span></h4>
+
+
+
+<form class="searchform">
+  <button><img src="assets/images/search.svg"></button>
+  <input placeholder="Type here to search customers ……." type="text" name="searchTerm">
+  <span class="ml-3"></span>
+</form>
+
+<table class="tabledark" *ngIf="total_loan_detail">
+  <thead>
+    <tr>
+      <th scope="col">Loan Name</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Source</th>
+      <th scope="col">Created On</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let loans of total_loan_detail.data">
+
+      <td>
+        <ngb-highlight [result]="loans.loan_name"></ngb-highlight>
+      </td>
+      <td>
+        <ngb-highlight [result]="loans.phone"></ngb-highlight>
+      </td>
+      <td>
+        <ngb-highlight [result]="loans.source"></ngb-highlight>
+      </td>
+      <td>
+        <ngb-highlight [result]="loans.add_date | date: 'dd MMM yyyy' "></ngb-highlight><br>
+      </td>
+      <td>
+        <div>
+          <!-- <img src='assets/images/menu-icon.svg' alt=""> -->
+          <div ngbDropdown class="drop">
+            <button id="dropdownBasic1" ngbDropdownToggle><img src='assets/images/menu-icon.svg' alt=""> <img
+                src='assets/images/menu-color.svg' class="menucolor"></button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <a routerLink="/userdetails" ngbDropdownItem>View</a>
+              <a href="#" ngbDropdownItem>Edit</a>
+              <a href="#" ngbDropdownItem>Delete</a>
+            </div>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

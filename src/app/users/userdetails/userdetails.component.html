@@ -1,0 +1,205 @@
+<aside>
+	<app-navbar></app-navbar>
+</aside>
+<h4 class="heading"><span>Customer Details</span>
+    <!-- <span><a routerLink="/adduser">Edit <img
+                src="assets/images/edit.svg"></a></span> -->
+</h4>
+
+<div class="statbox" *ngIf="userdetails$">
+    <div class="col-sm-5">
+        <img class="imguser"
+            src="assets/images/avatar.png">
+        <div>
+            <h4>{{ userdetails$[0].name }}</h4>
+            <p>{{ userdetails$[0].email }}</p>
+            <p>{{ userdetails$[0].phone }}</p>
+        </div>
+    </div>
+    <div class="col-sm-7">
+        <p><b>Date of Birth</b> {{ userdetails$[0].dob | date: 'dd MMM yyyy' }}</p>
+        <p><b>PAN No</b> {{ userdetails$[0].pan }}</p>
+        <p><b>Address</b> {{ userdetails$[0].address }}</p>
+    </div>
+</div>
+
+
+
+<ngb-tabset>
+    <ngb-tab id="activities">
+        <ng-template ngbTabTitle>Activities</ng-template>
+        <ng-template ngbTabContent>
+            <ul class="activites" *ngIf="userActivities" style="padding-top:10px;">
+                <li *ngFor="let events of userActivities">
+                    <small>{{events.add_date}}</small> Campaign Id: &nbsp;&nbsp;{{events.camp_id}}<br>Source:
+                    &nbsp;&nbsp;{{events.source}}<br>Event: &nbsp;&nbsp;{{events.eventname}}
+                </li>
+            </ul>
+        </ng-template>
+    </ngb-tab>
+
+    <ngb-tab id="user_details">
+        <ng-template ngbTabTitle>User Details</ng-template>
+        <ng-template ngbTabContent>
+            <div class="userDetailstatbox" *ngIf="userdetails$">
+                <div class="col-sm-5">
+                    <img class="imguser" src="assets/images/avatar.png">
+                    <div>
+                        <h4>{{ userdetails$[0].name }}</h4>
+                        <p>{{ userdetails$[0].email }}</p>
+                        <p>{{ userdetails$[0].phone }}</p>
+                        <span><a routerLink="/adduser">Edit <img src="assets/images/edit.svg"></a></span>
+                    </div>
+                </div>
+                <div class="col-sm-7">
+                    <p><b>Date of Birth</b> {{ userdetails$[0].dob | date: 'dd MMM yyyy' }}</p>
+                    <p><b>PAN No</b> {{ userdetails$[0].pan }}</p>
+                    <p><b>Address</b> {{ userdetails$[0].address }}</p>
+                    <p><b>Source</b> {{ userdetails$[0].source }}</p>
+                    <p><b>Bank Account</b> {{ userdetails$[0].bank_account }}</p>
+                    <p><b>Bank IFSC</b> {{ userdetails$[0].bank_ifsc }}</p>
+                    <p><b>Bank Name</b> {{ userdetails$[0].bank_name }}</p>
+                    <p><b>Beneficiary Name</b> {{ userdetails$[0].beneficiary_name }}</p>
+                </div>
+            </div>
+        </ng-template>
+    </ngb-tab>
+
+    <ngb-tab id="loans">
+        <ng-template ngbTabTitle>Loans</ng-template>
+        <ng-template ngbTabContent>
+            <table class="tabledark" *ngIf="single_user_loan">
+                <thead>
+                    <tr>
+                        <th scope="col">Loan Name</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">EMI Amount</th>
+                        <th scope="col">EMI Start Date</th>
+                        <th scope="col">Rate of Interest</th>
+                        <th scope="col">Tenor</th>
+                        <th scope="col">Created On</th>
+                        <th scope="col">Source</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let loan of single_user_loan">
+                        <td>{{loan.loan_name}}</td>
+                        <td>INR {{loan.loan_amount}}</td>
+                        <td>INR {{loan.emi_amount}}</td>
+                        <td>{{loan.emi_start_date | date: 'dd MMM yyyy'}}</td>
+                        <td>{{loan.rate_of_interest}}% per annum</td>
+                        <td>{{loan.tenor}} months</td>
+                        <td>{{loan.add_date | date: 'dd MMM yyyy'}}</td>
+                        <td>{{loan.source}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </ng-template>
+    </ngb-tab>
+
+    <ngb-tab id="offers">
+        <ng-template ngbTabTitle>Offers</ng-template>
+        <ng-template ngbTabContent>
+            <table class="tabledark" *ngIf="user_offer">
+                <thead>
+                    <tr>
+                        <th scope="col">Campaign No.</th>
+                        <th scope="col">Loan Amount</th>
+                        <th scope="col">EMI Amount</th>
+                        <th scope="col">EMI Start Date</th>
+                        <th scope="col">Rate of Interest</th>
+                        <th scope="col">Tenor</th>
+                        <th scope="col">Source</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let offer of user_offer">
+                        <td>
+                            <ngb-highlight [result]="offer.camp_id"></ngb-highlight>
+                        </td>
+                        <td>
+                            INR {{offer.loan_amount}}
+                        </td>
+                        <td>
+                            INR {{offer.emi_amount}}
+                        </td>
+                        <td>
+                            {{offer.emi_start_date | date: 'dd MMM yyyy'}}
+                        </td>
+                        <td>
+                            {{offer.rate_of_interest}}% per annum
+                        </td>
+                        <td>
+                            {{offer.tenor}} months
+                        </td>
+                        <td>
+                            {{offer.source}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </ng-template>
+    </ngb-tab>
+
+    <ngb-tab id="discrepancy">
+        <ng-template ngbTabTitle>Discrepancy</ng-template>
+        <ng-template ngbTabContent>
+            <table class="tabledark" *ngIf="user_discrepancy">
+                <thead>
+                    <tr>
+                        <th scope="col">Event Name</th>
+                        <th scope="col">Descreption</th>
+                        <th scope="col">Source</th>
+                        <th scope="col">Stage</th>
+                        <th scope="col">Created On</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let discrepancy of user_discrepancy">
+                        <td>{{discrepancy.eventname}}</td>
+                        <td>{{discrepancy.description}}</td>
+                        <td>{{discrepancy.source}}</td>
+                        <td>{{discrepancy.stage}}</td>
+                        <td>{{discrepancy.add_date | date: 'dd MMM yyyy'}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </ng-template>
+    </ngb-tab>
+
+    <!-- <ngb-tab id="transaction_history">
+        <ng-template ngbTabTitle>Transaction History</ng-template>
+        <ng-template ngbTabContent>
+            <h4>Transaction History</h4>
+        </ng-template>
+    </ngb-tab> -->
+
+    <!-- <ngb-tab id="payment_schedule"> 
+        <ng-template ngbTabTitle>Payment Schedule</ng-template>
+        <ng-template ngbTabContent>
+            <h4>Payment Schedule</h4>
+        </ng-template>
+    </ngb-tab>
+
+    <ngb-tab id="nach">
+        <ng-template ngbTabTitle>NACH</ng-template>
+        <ng-template ngbTabContent>
+            <h4>NACH</h4>
+        </ng-template>
+    </ngb-tab>
+
+    <ngb-tab id="welcome_letter">
+        <ng-template ngbTabTitle>Welcome Letter</ng-template>
+        <ng-template ngbTabContent>
+            <h4>Welcome Letter</h4>
+        </ng-template>
+    </ngb-tab>
+
+    <ngb-tab id="noc_letter">
+        <ng-template ngbTabTitle>NOC Letter</ng-template>
+        <ng-template ngbTabContent>
+            <h4>NOC Letter</h4>
+        </ng-template>
+    </ngb-tab> -->
+
+</ngb-tabset>

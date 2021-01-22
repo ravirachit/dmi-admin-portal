@@ -1,0 +1,234 @@
+.searchform{
+    width: 50% !important;
+    .input {
+      background: none;
+      border: 1px solid #FFD96A;
+      margin-bottom: 2px;
+      font-size: 15px;
+      font-weight: 400;
+  }.row{
+    margin-right: -8px !important;
+    margin-left: 30px !important;
+    .input{
+      width: 200px !important;
+    }.btn{
+      align-self: flex-end;
+      margin-bottom: 3px !important;
+    }
+  }
+}
+.searchbtn{
+    margin-left: 7%;
+    margin-top: 10px;
+    margin-bottom: -20px;
+}
+.btn{
+    padding: 7%;
+    border: 1px solid #FFD96A;
+    color: #FFD96A !important;
+    height: 34px;
+    line-height: 5px;
+    font-size: 15.5px;
+    &:hover{
+      border: 1px solid #FFD96A !important;
+      border-color: #FFD96A !important;
+    }
+  }
+  .table{
+    color: #fff !important;
+    overflow: scroll;
+    max-width: 100%;
+    overflow-y: hidden;
+    th{
+      color: #FFD96A !important;
+      font-size: 16px !important;
+      white-space: nowrap;
+    }
+    td{
+      white-space: nowrap;
+    }
+  }
+  .createlink{
+    border: 1px solid #FFD96A;
+    color: #FFD96A !important;
+    line-height: 5px;
+    padding: 0% !important;
+  }
+.isOpen {
+  transform: scale(1);
+  animation: blowUpModal 0.8s;
+}
+
+@keyframes blowUpModal {
+  0% {
+      transform: scale(0.5);
+  }
+}
+// .groups{width:100%;float:left;border: 1px solid#FFD96A; height: 300px; margin-top: 32px;}
+// .add span{width:33%;float:left;    padding-bottom: 30px;
+//   font-size: 13px;}
+//   .add {padding: 0px 25px;}
+//   .in input[type=text] {background: none; color:#FFD96A;border:none;border-bottom: 1px solid#FFD96A;    width: 115px;}
+// .padding-adj{padding-top:50px;}
+.bn{ background:none;border:1px solid#FFD96A;border-radius: 50px;color:#FFD96A;        padding: 3px 20px;margin-top:20px;float: right; }
+.form-group{width:100%;float:left;    border: 1px solid#6c757d;}
+.dmi{width:100%;float:left;    border-bottom: 1px solid#6c757d;        padding: 9px 30px 0px 30px;color: #FFD96A;}
+.dmi h2{font-size: 17px;
+}
+.left {
+  width: 50%;
+  float: left;}
+  .yellow1{color:#FFD96A;
+    font-size: 12px;} .rt{padding-left: 20px;}
+  .white{font-size: 14px}
+  .right{width:50%;float:right;text-align: right;    font-size: 14px;}
+  .dmi.bottom{border-bottom: 1px solid#6c757d;       padding: 30px 0px 0px 30px;}
+.groups{width:100%;float:left;padding-top: 20px;}
+.groups .grp-frm{width:30%;float:left;padding-bottom: 20px;padding-left: 11px;}
+.grp-frm.bttm{padding-top:30px;}
+.white input{background: transparent;border: none;box-shadow: none;outline:none;border-bottom: 1px solid#FFD96A;     width: 84%;color: white;}
+.right img{padding-bottom: 20px;}
+.modal-dialog1 {
+  position: fixed;
+  right: 32%;
+  left: 38%;
+  margin: 0;
+  max-width: 100%;
+  top: 30%;
+  bottom: 48%;
+  background: #fff;
+  border-radius: 0;
+}
+.backdrop {
+  background-color: rgba(43, 43, 43, 0.71);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 14;
+}
+.buttns{
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+}
+.modal-content{
+  background-color: #212529 !important;
+  border:1px solid #FFD96A;
+}
+.blogStatus{
+  width: 100%;
+  background: #313030;
+  color: #fff;
+  padding: 10px 10px;
+  border-radius: 4px;
+  font-weight: 500;
+  border:1px solid #FFD96A;
+  margin-left: 20px;
+  transition: all 200ms linear;
+}
+
+
+
+
+// Custom Checkbox
+
+.banking_checkbox_container {
+  display: block;
+  position: relative;
+  padding-left: 40px;
+  padding-right: 70px;
+  cursor: pointer;
+  font-size: 15px;
+  color: #fff;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.banking_checkbox_container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 22px;
+  width: 23px;
+  background-color: #eee;
+  border-radius: 20px;
+  border: 1px solid #424242;
+}
+
+/* On mouse-over, add a grey background color */
+.banking_checkbox_container:hover input ~ .checkmark {
+  background-color: white;
+}
+
+/* When the checkbox is checked, add a blue background */
+.banking_checkbox_container input:checked ~ .checkmark {
+  background-color: #FFD96A;
+  border:1px solid#fff;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.banking_checkbox_container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.banking_checkbox_container .checkmark:after {
+  left: 0px;
+  top: 0px;
+  width: 20px;
+  height: 20px;
+  border: solid #eee;
+  border-width: 2px 2px 2px 2px;
+  border-radius: 20px;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(0deg);
+}
+.floatRight{
+    // float: right;
+    margin-left: 50px;
+}
+.dialogInput{
+  width: 100%;
+  background: #d8d8d8;
+  color: black;
+  padding: 10px 10px;
+  border-radius: 4px;
+  font-weight: 300;
+  border: 0;
+  margin-top: 22px;
+}
+
+.submitBtn{
+  background:  #FFD96A;
+    border: 0px solid;
+    border-radius: 30px;
+    height: 35px;
+    width: 80px;
+    color: #000;
+    border:1px solid #FFD96A;
+    font-size: 15px;
+}
+.main-first{width:100%;float:left;}
+.main-section{width:33%;float:left;padding: 20px;}
+@media(max-width:1540px) {.main-section{width:50%;float:left;}}

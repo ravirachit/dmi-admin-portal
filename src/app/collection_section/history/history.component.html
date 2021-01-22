@@ -1,0 +1,61 @@
+<aside>
+    <app-navbar></app-navbar>
+  </aside>
+  
+ 
+  
+  <div class="loan_loader" *ngIf="showLoader" align="center"><img src="assets/loading.gif" height="45"></div>
+  
+  <div class="col-sm-12" style="margin-top:25px">
+      <div class="statbox">
+          <table class="table">
+              <thead>
+                  <tr>
+                      <th>S.No.</th>
+                      <th scope="col" sortable="name">Loan Name</th>
+                      <th scope="col" sortable="mobile">Amount</th>
+                      <th scope="col" sortable="mobile">Payment Link</th>
+                      <th scope="col" sortable="amount">Mobile</th>
+                      <th scope="col" sortable="amount">Date</th>
+                      
+                  </tr>
+              </thead>
+      
+              <tbody *ngIf="salesForceResponse">
+                  <tr *ngFor="let history of salesForceResponse;let index = index">
+                      <td>
+                          <ngb-highlight [result]="index+1"></ngb-highlight>
+                      </td>
+                      <td>
+                          <ngb-highlight [result]="history.loan_id"></ngb-highlight>
+                      </td>
+                      <td>
+                          <ngb-highlight [result]="history.amount"></ngb-highlight>
+                      </td>
+                      <td>
+                          <ngb-highlight [result]="history.payment_link"></ngb-highlight>
+                      </td>
+                      <td>
+                          <ngb-highlight [result]="history.sms_phone"></ngb-highlight>
+                      </td>
+                      <td>
+                          <ngb-highlight [result]="history.created_at"></ngb-highlight>
+                      </td>
+                      
+                     
+                  </tr>
+              </tbody>
+          </table>
+  
+          
+  
+  
+  
+  
+         
+      
+         
+      
+      </div>
+  </div>
+  

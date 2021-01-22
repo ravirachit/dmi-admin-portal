@@ -1,0 +1,78 @@
+.statbox {
+  background: #242424;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  padding: 15px;
+  display: flex;
+}
+
+.statbox p {
+  font-weight: 300;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  display: flex;
+  font-weight: 400;
+  margin-bottom: 0;
+}
+
+.statbox p b {
+  display: block;
+  min-width: 90px;
+  font-weight: 400;
+}
+
+.statbox .col-sm-5 {
+  display: flex;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.statbox .col-sm-5 img {
+  margin-right: 20px;
+}
+
+.statbox h4 {
+  margin-bottom: 0;
+  font-size: 18px;
+  padding-top: 10px;
+}
+
+.statbox h4 span {
+  color: #FFD96A;
+  font-weight: 900;
+  display: block;
+}
+
+.statbox h4 small {
+  font-size: 12px;
+  display: block;
+  font-weight: 400;
+}
+
+.statbox a {
+  color: #FFD96A;
+}
+
+.activity {
+  display: flex;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 12px;
+}
+
+.activity div {
+  width: 100%;
+}
+
+.activity span {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  width: 100%;
+}
+
+.activity span small {
+  margin: 0;
+}
+
+.activity p {
+  font-size: 13px;
+}

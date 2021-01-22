@@ -1,0 +1,38 @@
+<!-- *ngIf="isLoggedIn$ | async as isLoggedIn" -->
+<header  >
+    <form>
+        <!-- <img src="assets/images/search.svg">
+        <input type="search" placeholder="Type here to search ……."> -->
+    </form>
+    <div class="header-right">
+        <!-- <div ngbDropdown class="drop">
+            <a routerLink="/blog"><img src="assets/images/blog.svg"> Blogs</a>
+        </div>
+        <div ngbDropdown class="drop">
+            <a routerLink="/faqlist"><img src="assets/images/message.svg"> FAQ</a>
+        </div> -->
+        
+        <div ngbDropdown class="drop">
+            <button id="dropdownBasic1" ngbDropdownToggle><img src="assets/images/bell.svg"></button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <div ngbDropdownItem>Action - 1</div>
+                <div ngbDropdownItem>Another Action</div>
+                <div ngbDropdownItem>Something else is here</div>
+            </div>
+        </div>
+
+        <div ngbDropdown class="drop">
+            <button id="dropdownBasic1" ngbDropdownToggle routerLink="/my-account">My Account</button>
+            <!-- <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <div ngbDropdownItem>Action - 1</div>
+                <div ngbDropdownItem>Another Action</div>
+                <div ngbDropdownItem>Something else is here</div>
+            </div> -->
+        </div>
+        
+        <div class="userpic">
+            <a routerLink="!" (click)="onLogout()">Sign Out</a>
+            <div class="userimg" style="background-image: url(https://peopledotcom.files.wordpress.com/2019/04/keanu-reeves.jpg?w=2185&h=2700)"></div>
+        </div>
+    </div>
+</header>

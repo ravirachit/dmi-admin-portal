@@ -1,0 +1,37 @@
+<aside>
+	<app-navbar></app-navbar>
+</aside>
+<h4 class="heading"><span>Category Management</span> <span><a routerLink="/addcategory">Add Category<img
+        src="assets/images/add.svg"></a></span></h4>
+<div class="row">
+  <table class="tabledark">
+    <thead>
+      <tr>
+        <th>Category Name</th>
+        <th>Created By</th>
+        <th>Created On</th>
+        <th>Status</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody *ngIf="categoryList">
+      <tr *ngFor="let category of categoryList.data">
+
+        <td>{{category.category_name}}</td>
+        <td>{{category.created_by}}</td>
+        <td>{{category.created_at | date: 'MMM dd, yyyy'}}</td>
+        <td>{{category.status}}</td>
+        <td>
+          <div ngbDropdown class="drop">
+            <button id="dropdownBasic1" ngbDropdownToggle><img src='assets/images/menu-icon.svg' alt="">
+              <img src='assets/images/menu-color.svg' class="menucolor"></button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <a href="#" ngbDropdownItem>Edit</a>
+              <a href="#" ngbDropdownItem>Delete</a>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

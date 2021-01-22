@@ -1,0 +1,112 @@
+<aside>
+	<app-navbar></app-navbar>
+</aside>
+<h4 class="heading"><span>Add New User</span> <span> &nbsp;&nbsp;</span></h4>
+<div class="row justify-content-center">
+ 
+<div class="col-sm-11 formBox statbox">
+
+    <form name="form" class="row formClass" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm"  novalidate>
+        
+        <div class="col-sm-12">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group ">
+                        <label for="user_name">Name</label>
+                        <input type="text" class="form-control input" name="user_name" [(ngModel)]="model.user_name" 
+                        #user_name="ngModel" [ngClass]="{ 'is-invalid': f.submitted && user_name.invalid }"  required />
+                        <div *ngIf="f.submitted && user_name.invalid" class="invalid-feedback">
+                            <div *ngIf="user_name.errors.required">Name is required</div>
+                        </div>
+                    </div>
+              
+                    <div class="form-group formInput">
+                        <label for="user_email">Email</label>
+                        <input type="text" class="form-control input" name="user_email" [(ngModel)]="model.user_email" #user_email="ngModel" 
+                        [ngClass]="{ 'is-invalid': f.submitted && user_email.invalid }" required  email />
+                        <div *ngIf="f.submitted && user_email.invalid" class="invalid-feedback">
+                            <div *ngIf="user_email.errors.required">Email is required</div>
+                            <div *ngIf="user_email.errors.email">Email must be a valid email address</div>
+                        </div>
+                    </div>
+              
+                    <div class="form-group formInput">
+                        <label for="user_phone">Mobile Number</label>
+                        <input type="number" class="form-control input" name="user_phone" [(ngModel)]="model.user_phone" 
+                        #user_phone="ngModel" [ngClass]="{ 'is-invalid': f.submitted && user_phone.invalid }" required 
+                         minlength="10" maxlength="10" (ngModelChange)="changeEvent(model.user_phone)"/>
+                        <div *ngIf="f.submitted && user_phone.invalid" class="invalid-feedback">
+                            <div *ngIf="user_phone.errors.required">Mobile number is required</div>
+                            <div *ngIf="user_phone.errors.minlength">Mobile number must be at least 10 characters</div>
+                            <div *ngIf="user_phone.errors.maxlength">Mobile number must be at least 10 characters</div>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="user_amount">Amount</label>
+                        <input type="text" class="form-control input" name="user_amount" [(ngModel)]="model.user_amount"
+                         #user_amount="ngModel" [ngClass]="{ 'is-invalid': f.submitted && user_amount.invalid }" required/>
+                        <div *ngIf="f.submitted && user_amount.invalid" class="invalid-feedback">
+                            <div *ngIf="user_amount.errors.required">Amount is required</div>
+                        </div>
+                    </div>
+            
+                    <div class="form-group formInput">
+                        <label for="user_loan_id">Loan-ID</label>
+                        <input type="text" class="form-control input" name="user_loan_id" [(ngModel)]="model.user_loan_id" 
+                        #user_loan_id="ngModel" [ngClass]="{ 'is-invalid': f.submitted && user_loan_id.invalid }" required/>
+                        <div *ngIf="f.submitted && user_loan_id.invalid" class="invalid-feedback">
+                            <div *ngIf="user_loan_id.errors.required">Loan-ID is required</div>
+                        </div>
+                    </div>
+              
+                    <div class="form-group formInput">
+                        <label for="user_date">Due-Date</label>
+                        <input type="text" placeholder="Please Enter Due-Date" class="form-control input" [bsConfig]="{ isAnimated: true, adaptivePosition: true }" 
+                        bsDatepicker name="user_date" [(ngModel)]="model.user_date" #user_date="ngModel" 
+                        [ngClass]="{ 'is-invalid': f.submitted && user_date.invalid }" required
+                            readonly style="cursor: pointer; " />
+                        <div *ngIf="f.submitted && user_date.invalid" class="invalid-feedback">
+                            <div *ngIf="user_date.errors.required">Due-Date is required</div>
+                        </div>
+                        <!-- <input type="text" placeholder="Please Enter Due-Date"  class="input" placement="right" required bsDatepicker [(ngModel)]="user_date"> -->
+            
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group buttonSubmit col-sm-6">
+                <button type="submit" class="btn btn-dark" (click)=addUsertoList()>Add User</button>
+            </div>
+
+        </div>
+    </form>
+ <!-- <label>Name</label>
+  <input type="text" placeholder="Please Enter User Name" class="input" required [(ngModel)]="user_name">
+
+  <label>Email</label>
+  <input type="email" placeholder="Please Enter User Email" class="input" required [(ngModel)]="user_email">
+
+  <label>Phone no.</label>
+  <input type="number" placeholder="Please Enter Users Phone no." class="input" required [(ngModel)]="user_phone">
+  
+  <label>Amount</label>
+  <input type="number" placeholder="Please Enter Amount" class="input" required [(ngModel)]="user_amount">
+
+  <label>Loan-ID</label>
+  <input type="number" placeholder="Please Enter Loan ID" class="input" required [(ngModel)]="user_loan_id">
+
+  <label>Due-Date</label>
+  <input type="text" placeholder="Please Enter Due-Date"  class="input" placement="right" required bsDatepicker [(ngModel)]="user_date">
+
+  <div>
+     
+  </div>
+
+
+
+-->
+
+</div></div>

@@ -1,0 +1,21 @@
+<aside>
+	<app-navbar></app-navbar>
+</aside>
+<h4 class="heading"><span>My Account</span> </h4>
+<br>
+<div class="row statbox" style="justify-content: center;">
+  <div class="col-sm-6">
+
+    <label>Old Password</label>
+    <input type="password" placeholder="Old Password"  class="input" [(ngModel)]="oldpassword">
+
+    <label>New Password</label>
+    <input type="password" placeholder="New Password"  class="input" [(ngModel)]="newpassword">
+
+    <label>Confirm New Password</label>
+    <input type="password" placeholder="Confirm New Password"  class="input" [(ngModel)]="confirmNewpassword">
+    
+    <button type="submit" class="btn btn-dark" (click)="changePassowrd()">Change Password</button>
+    
+  </div>
+</div>

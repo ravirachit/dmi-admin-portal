@@ -1,0 +1,47 @@
+<aside>
+	<app-navbar></app-navbar>
+</aside>
+<h4 class="heading"><span>FAQ Management</span> <span><a routerLink="/addfaq">Add FAQ<img
+        src="assets/images/add.svg"></a></span></h4>
+
+<div class="container">
+  <div class="box">
+      <div class="accordion" id="accordion" *ngIf="faqlist">
+          <div class="panel panel-default" *ngFor="let faq of faqlist.data; let i = index">
+              <div class="panel-heading">
+                  <h4 class="panel-title">
+                      <a (click)="isCollapsed[i] = !isCollapsed[i]">{{faq.question}}</a>
+                  </h4> 
+                  <div ngbDropdown class="drop">
+                    <button id="dropdownBasic1" ngbDropdownToggle><img src="assets/images/menu-icon.svg"></button>
+                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                        <a (click)="updateFAQ(faq)">Edit</a>
+                        <a (click)="deleteFAQ(faq)">Delete</a>
+                    </div>
+                </div>
+              </div>
+              <div [ngbCollapse]="isCollapsed[i]">
+                {{faq.answer}}
+            </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+<ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="collectionSize" (pageChange)="loadPage($event)">
+</ngb-pagination>
+
+
+
+<!-- <ngb-accordion  [activeIds]="activeIds">
+  <ngb-panel *ngFor="let faq of faqlist.data; let i= index" title="{{faq.question}}" id="{{i}}">
+    <ng-template ngbPanelContent class="drop"> 
+     {{faq.answer}}
+    </ng-template>
+  </ngb-panel>
+</ngb-accordion> -->
+
+
+
+
+

@@ -1,0 +1,280 @@
+<!--  *ngIf="isLoggedIn$ | async as isLoggedIn" -->
+<div class="navigation" >
+    <img src="assets/images/logo.png" class="logo">
+    <perfect-scrollbar style="max-height: 100vh;height: 80vh;" [scrollIndicators]="false" [usePSClass]="true">
+        <nav *ngIf="showAdmin==true">
+
+            <a class="permission" routerLink="/allow-permissions" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+                <img src="assets/images/dasboard.svg">
+                <img src="assets/images/dashbord-active.svg" class="activeimg"> Role Management
+            </a>
+
+            <div routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+                <a style="margin-right: 35px;">
+                    <img src="assets/images/usermanag.svg">
+                    <img src="assets/images/usermanag-active.svg" class="activeimg"> Partner Management </a>
+
+                <div (click)="isCollapsedPart = !isCollapsedPart" [attr.aria-expanded]="!isCollapsedPart" aria-controls="collapseExamplePart" class="navcollapse">
+                    <img src="assets/images/menu-icon.svg">
+                </div>
+
+                <div id="collapseExamplePart" [ngbCollapse]="!isCollapsedPart">
+                    <a routerLink="/partner" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Partner Portal</a>
+                    <a routerLink="/user-portal" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">User Portal</a>
+                    <a routerLink="/partnerevents" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Event Tracking</a>
+                </div>
+            </div>
+
+            <div routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+                <a style="margin-right: 35px;">
+                    <img src="assets/images/usermanag.svg">
+                    <img src="assets/images/usermanag-active.svg" class="activeimg"> Customer Portal </a>
+
+                <div (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample" class="navcollapse">
+                    <img src="assets/images/menu-icon.svg">
+                </div>
+
+                <div id="collapseExample" [ngbCollapse]="!isCollapsed">
+                    <a routerLink="/events" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Customers Portal Events</a>
+                    <a routerLink="/transaction-analytics" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Customer Transaction Analytics</a>
+                    <a routerLink="/feedback-analytics" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Customer Feedback Analytics</a>
+                    <a routerLink="/cust-dashboard" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Dashboard</a>
+                    <a routerLink="/blog" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Blogs</a>
+                    <a routerLink="/faqlist" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Knowledge Base</a>
+                    <a routerLink="/notification" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Notification & Alerts</a>
+                    <a routerLink="/allowed-borrower" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Allowed Borrowers</a>
+                    <a routerLink="/borrowers" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Borrowers</a>
+                    <a routerLink="/cust-loans" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Loans</a>
+                    <a routerLink="/tickets" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Tickets</a>
+                </div>
+            </div>
+
+            <div routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+                <a style="margin-right: 35px;">
+                    <img src="assets/images/usermanag.svg">
+                    <img src="assets/images/usermanag-active.svg" class="activeimg"> Collection </a>
+
+                <div (click)="isCollapsedCol = !isCollapsedCol" [attr.aria-expanded]="!isCollapsedCol" aria-controls="collapseExampleCol" class="navcollapse">
+                    <img src="assets/images/menu-icon.svg">
+                </div>
+
+                <div id="collapseExampleCol" [ngbCollapse]="!isCollapsedCol">
+                    <a routerLink="/collect-dashboard" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Dashboard</a>
+                    <a routerLink="/viewlist" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Collection List</a>
+                    <a routerLink="/paylink" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Payment Link</a>
+                    <!-- <a routerLink="/creatlist" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Create List</a> -->
+                    <!-- <a routerLink="/event-tracking" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Events Summary</a> -->
+                    <a routerLink="/payment-tracking" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Payment History</a>
+                </div>
+            </div>
+
+            <div routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+                <a style="margin-right: 35px;">
+                    <img src="assets/images/usermanag.svg">
+                    <img src="assets/images/usermanag-active.svg" class="activeimg"> X-Sell </a>
+
+                <div (click)="isCollapsedX = !isCollapsedX" [attr.aria-expanded]="!isCollapsedX" aria-controls="collapseExampleX" class="navcollapse">
+                    <img src="assets/images/menu-icon.svg">
+                </div>
+
+                <div id="collapseExampleX" [ngbCollapse]="!isCollapsedX">
+                    <a routerLink="/x-sell-dashboard" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Dashboard</a>
+                    <a routerLink="/x-sell-loans" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Loans</a>
+                    <a routerLink="/x-sell-offers" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Offers</a>
+                </div>
+            </div>
+
+            <div routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+                <a style="margin-right: 35px;">
+                    <img src="assets/images/usermanag.svg">
+                    <img src="assets/images/usermanag-active.svg" class="activeimg"> E-Mandate </a>
+
+                <div (click)="isCollapsedE = !isCollapsedE" [attr.aria-expanded]="!isCollapsedE" aria-controls="collapseExampleE" class="navcollapse">
+                    <img src="assets/images/menu-icon.svg">
+                </div>
+
+                <div id="collapseExampleE" [ngbCollapse]="!isCollapsedE">
+                    <a routerLink="/e-dashboard" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Dashboard</a>
+                    <a routerLink="/e-loans" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Loans</a>
+                    <a routerLink="/e-borrowers" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Borrowers</a>
+                    <a routerLink="/e-tracking" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Events Tracking</a>
+                    <a routerLink="/e-analytics" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Analytics</a>
+                </div>
+            </div>
+
+            <!-- <a routerLink="/co-agent" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+                <img src="assets/images/dasboard.svg">
+                <img src="assets/images/dashbord-active.svg" class="activeimg"> Dashboard
+            </a> -->
+            <!-- <a routerLink="/dashboard" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+                <img src="assets/images/dasboard.svg">
+                <img src="assets/images/dashbord-active.svg" class="activeimg"> Dashboard
+            </a>
+            <div routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+                <a routerLink="/users" style="margin-right: 35px;">
+                    <img src="assets/images/usermanag.svg">
+                    <img src="assets/images/usermanag-active.svg" class="activeimg"> User Management </a>
+
+                <div (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample" class="navcollapse">
+                    <img src="assets/images/menu-icon.svg">
+                </div>
+
+                <div id="collapseExample" [ngbCollapse]="!isCollapsed">
+                    <a routerLink="/employee" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Admin</a>
+                    <a routerLink="/employee">Vendor</a>
+                    <a routerLink="/employee">Employee</a>
+                </div>
+            </div>
+            <a routerLink="/dealers" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+                <img src="assets/images/dealer.svg">
+                <img src="assets/images/dealer-active.svg" class="activeimg"> Dealer Management
+            </a>
+            <a routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+                <img src="assets/images/loan.svg">
+                <img src="assets/images/loan-active.svg" class="activeimg"> Loan Management
+            </a>
+            <a routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+                <img src="assets/images/offer.svg">
+                <img src="assets/images/offer-active.svg" class="activeimg"> Offers
+            </a>
+            <a routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+                <img src="assets/images/report.svg">
+                <img src="assets/images/report-active.svg" class="activeimg"> Reports
+            </a> -->
+        </nav>
+
+        <nav *ngIf="showCustomers==true">
+            <div routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+                <a style="margin-right: 35px;">
+                    <img src="assets/images/usermanag.svg">
+                    <img src="assets/images/usermanag-active.svg" class="activeimg"> Partner Management </a>
+
+                <div (click)="isCollapsedPart = !isCollapsedPart" [attr.aria-expanded]="!isCollapsedPart" aria-controls="collapseExamplePart" class="navcollapse">
+                    <img src="assets/images/menu-icon.svg">
+                </div>
+
+                <div id="collapseExamplePart" [ngbCollapse]="!isCollapsedPart">
+                    <a routerLink="/partner" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Partner Portal</a>
+                    <a routerLink="/user-portal" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">User Portal</a>
+                </div>
+            </div>
+
+            <a routerLink="/events" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+                <img src="assets/images/customer.svg">
+                <img src="assets/images/customer-active.svg" class="activeimg"> Customers Portal Events
+            </a>
+            <a routerLink="/transaction-analytics" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+                <img src="assets/images/customer.svg">
+                <img src="assets/images/customer-active.svg" class="activeimg"> Customer Transaction Analytics
+            </a>
+            <a routerLink="/feedback-analytics" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+                <img src="assets/images/customer.svg">
+                <img src="assets/images/customer-active.svg" class="activeimg"> Customer Feedback Analytics
+            </a>
+            <a routerLink="/cust-dashboard" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+                <img src="assets/images/dasboard.svg">
+                <img src="assets/images/dashbord-active.svg" class="activeimg"> Dashboard
+            </a>
+            <a routerLink="/blog" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+                <img src="assets/images/customer.svg">
+                <img src="assets/images/customer-active.svg" class="activeimg"> Blogs
+            </a>
+            <a routerLink="/faqlist" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+                <img src="assets/images/message.svg">
+                <img src="assets/images/message.svg" class="activeimg"> Knowledge Base
+            </a>
+            <a routerLink="/notification" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+                <img src="assets/images/customer.svg">
+                <img src="assets/images/customer-active.svg" class="activeimg"> Notification & Alerts
+            </a>
+            <a routerLink="/allowed-borrower" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+                <img src="assets/images/customer.svg">
+                <img src="assets/images/customer-active.svg" class="activeimg"> Allowed Borrowers
+            </a>
+            <a routerLink="/borrowers" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+                <img src="assets/images/customer.svg">
+                <img src="assets/images/customer-active.svg" class="activeimg"> Borrowers
+            </a>
+            <a routerLink="/cust-loans" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+                <img src="assets/images/customer.svg">
+                <img src="assets/images/customer-active.svg" class="activeimg"> Loans
+            </a>
+            <a routerLink="/tickets" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+                <img src="assets/images/customer.svg">
+                <img src="assets/images/customer-active.svg" class="activeimg"> Tickets
+            </a>
+        </nav>
+
+        <nav *ngIf="showCollection==true">
+            <a *ngIf="role_id == 5" routerLink="/collect-dashboard" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+                <img src="assets/images/list.svg">
+                <img src="assets/images/list-active.svg" class="activeimg"> Dashboard
+            </a>
+            <a *ngIf="role_id == 5" routerLink="/viewlist" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+                <img src="assets/images/viewlist.svg">
+                <img src="assets/images/viewlist-active.svg" class="activeimg"> Collection List
+            </a>
+            <a *ngIf="role_id == 5 || role_id == 8 || role_id == 9" routerLink="/paylink" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+                <img src="assets/images/customer.svg">
+                <img src="assets/images/customer-active.svg" class="activeimg"> Payment Link
+            </a>
+            <!-- <a *ngIf="role_id == 5" routerLink="/creatlist" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+                <img src="assets/images/list.svg">
+                <img src="assets/images/list-active.svg" class="activeimg"> Create List
+            </a> -->
+            <!-- <a *ngIf="role_id == 5" routerLink="/event-tracking" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+                <img src="assets/images/customer.svg">
+                <img src="assets/images/customer-active.svg" class="activeimg"> Events Summary
+            </a> -->
+            <a *ngIf="role_id == 5 || role_id == 9" routerLink="/payment-tracking" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+                <img src="assets/images/customer.svg">
+                <img src="assets/images/customer-active.svg" class="activeimg"> Payment History
+            </a>
+        </nav>
+
+        <nav *ngIf="showXSell==true">
+            <a routerLink="/x-sell-dashboard" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+                <img src="assets/images/dasboard.svg">
+                <img src="assets/images/dashbord-active.svg" class="activeimg"> Dashboard
+            </a>
+            <a routerLink="/x-sell-loans" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+                <img src="assets/images/list.svg">
+                <img src="assets/images/list-active.svg" class="activeimg"> Loans
+            </a>
+            <a routerLink="/x-sell-offers" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+                <img src="assets/images/list.svg">
+                <img src="assets/images/list-active.svg" class="activeimg"> Offers
+            </a>
+            <a routerLink="/x-sell-borrowers" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+                <img src="assets/images/list.svg">
+                <img src="assets/images/list-active.svg" class="activeimg"> Borrowers
+            </a>
+        </nav>
+
+        <nav *ngIf="showEMandate==true">
+            <a routerLink="/e-dashboard" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+                <img src="assets/images/dasboard.svg">
+                <img src="assets/images/dashbord-active.svg" class="activeimg"> Dashboard
+            </a>
+            <a routerLink="/e-loans" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+                <img src="assets/images/list.svg">
+                <img src="assets/images/list-active.svg" class="activeimg"> Loans
+            </a>
+            <a routerLink="/e-borrowers" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+                <img src="assets/images/viewlist.svg">
+                <img src="assets/images/viewlist-active.svg" class="activeimg"> Borrowers
+            </a>
+            <a routerLink="/e-tracking" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+                <img src="assets/images/customer.svg">
+                <img src="assets/images/customer-active.svg" class="activeimg"> Events Tracking
+            </a>
+            <a routerLink="/e-analytics" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
+                <img src="assets/images/customer.svg">
+                <img src="assets/images/customer-active.svg" class="activeimg"> Analytics
+            </a>
+        </nav>
+    </perfect-scrollbar>
+    <div class="copyright">
+        Powered by | <span>DMI Finance</span>
+    </div>
+</div>

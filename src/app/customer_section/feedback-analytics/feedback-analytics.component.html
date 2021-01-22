@@ -1,0 +1,195 @@
+<aside>
+	<app-navbar></app-navbar>
+</aside>
+<h4 class="heading">
+  <span>Customer Feedback Analytics</span>
+</h4>
+
+<div class="col-sm-12">
+    <div class="statbox">
+  
+      <div class="row">
+        <div class="col-sm-10 section">
+          <label class="labelHead">Select Date :</label>
+          <div class="selectionHeadDate row">  
+            <input class="input" placeholder="Start Date" [(ngModel)]="startDate" ngbDatepicker #dS="ngbDatepicker" [minDate]="startMaxDate" [maxDate]="currentDate">
+            <div>
+                <button class="btn btn-outline-secondary calendar selectDate" (click)="dS.toggle()" type="button"><img src="assets/calendar-yellow.svg" height="20px" width="20px"></button>
+            </div>
+  
+            <p class="date">To</p>  
+  
+            <input class="input" placeholder="End Date" [(ngModel)]="endDate" ngbDatepicker #d="ngbDatepicker" [minDate]="startMaxDate" [maxDate]="currentDate">
+            <div>
+                <button class="btn btn-outline-secondary calendar selectDate" (click)="d.toggle()" type="button"><img src="assets/calendar-yellow.svg" height="20px" width="20px"></button>
+            </div>  
+              
+            <div class="searchbtn">
+                <button class="btn btn-dark btn-position" (click)="searchData()">Search</button>
+            </div>
+          </div> 
+        </div>
+        <div class="col-sm-2 downloadCSV">
+            <a href="javascript:void(0)" (click)="download()"><small style="color: #ffd96a">Download Reports </small></a>
+        </div>
+      </div>
+  
+    </div>
+  </div>
+
+
+<div class="pieChart">
+  <div class="col-sm-12">
+    <div class="statbox" *ngIf="lineChartLabels" >
+      <div style="display: block;">
+        <canvas class="lineChartView" baseChart
+          [datasets]="lineChartData"
+          [labels]="lineChartLabels"
+          [chartType]="lineChartType"
+          [colors]="lineChartColors"
+          [legend]="lineChartLegend"
+          [options]="lineChartOptions">
+        </canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-12 lineChart">
+    <div class="statbox row" *ngIf="totalNPS">
+      <div class="col-sm-8">
+
+        <div class="row">
+            <div class="col-sm-3 statboxGraph">
+                <div>
+                  <p class="graphDetails" style="font-size: 15px">Total NPS :</p>
+                </div>
+                <div style="margin-top: 30px; color: #FFD96A">
+                  <p class="graphDetails">{{totalNPS}}</p>
+                </div>
+                <!-- <div *ngIf="sChartData1">
+                    <canvas baseChart width="150" height="50"
+                    [datasets]="sChartData1"
+                    [labels]="sChartLabels"
+                    [options]="sChartOptions"
+                    [colors]="sChartColors"
+                    [legend]="sChartLegend"
+                    [chartType]="sChartType"
+                    [plugins]="sChartPlugins">
+                  </canvas>
+                </div> -->
+              </div>
+
+              <div class="col-sm-3 statboxGraph statDetail">
+                  <div>
+                    <p class="graphDetails" style="font-size: 15px">Today NPS :</p>
+                  </div>
+                  <div style="margin-top: 30px;color: #FFD96A">
+                    <p class="graphDetails">{{todayNPS}}</p>
+                  </div>
+                  <!-- <div>
+                      <canvas *ngIf="sChartData3" baseChart width="150" height="50"
+                      [datasets]="sChartData3"
+                      [labels]="sChartLabels"
+                      [options]="sChartOptions"
+                      [colors]="sChartColors"
+                      [legend]="sChartLegend"
+                      [chartType]="sChartType"
+                      [plugins]="sChartPlugins">
+                    </canvas>
+                  </div> -->
+                </div>   
+        </div>
+
+        <div class="row graph">
+          <div class="col-sm-3 statboxGraph">
+            <div>
+              <p class="graphDetails" style="font-size: 15px">Total Feedback :</p>
+            </div>
+            <div style="margin-top: 30px; color: #FFD96A">
+              <p class="graphDetails">{{totalFeedback}}</p>
+            </div>
+            <!-- <div *ngIf="sDashboard1">
+                <canvas baseChart width="150" height="50"
+                [datasets]="sDashboard1"
+                [labels]="sChartLabels"
+                [options]="sChartOptions"
+                [colors]="sChartColors"
+                [legend]="sChartLegend"
+                [chartType]="sChartType"
+                [plugins]="sChartPlugins">
+              </canvas>
+            </div> -->
+          </div>
+
+          <div class="col-sm-3 statboxGraph statDetail">
+            <div>
+              <p class="graphDetails" style="font-size: 15px">Today Feedback :</p>
+            </div>
+            <div style="margin-top: 30px;color: #FFD96A">
+              <p class="graphDetails">{{todayFeedback}}</p>
+            </div>
+            <!-- <div>
+                <canvas *ngIf="sDashboard3" baseChart width="150" height="50"
+                [datasets]="sDashboard3"
+                [labels]="sChartLabels"
+                [options]="sChartOptions"
+                [colors]="sChartColors"
+                [legend]="sChartLegend"
+                [chartType]="sChartType"
+                [plugins]="sChartPlugins">
+              </canvas>
+            </div> -->
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-4" style="display: block;">
+        <div class="chart-container" style="height: 320px ; width: 200px ; margin-top: -30px">
+            <canvas *ngIf="pieChartData" baseChart
+            [data]="pieChartData" 
+            [labels]="pieChartLabels" 
+            [chartType]="pieChartType"
+            [colors]="pieChartColors"
+            [options]="pieChartOptions">
+          </canvas>
+        </div>
+      </div>
+    </div>
+
+  <div class="col-sm-12 lineChart">
+    <div class="statbox" *ngIf="tableData">
+      <div class="col-sm-12 row">
+        <table class="table" *ngIf="tableData">
+          <thead>
+            <tr>
+              <th  scope="col">S.No.</th>
+              <th  scope="col">Date</th>
+              <th  scope="col">Rating</th>
+              <th  scope="col"></th>
+              <th  scope="col">Loan Name</th>
+              <th  scope="col">Borrower's Name</th>
+              <th  scope="col">Mobile</th>
+              <th  scope="col">Feedback</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of tableData | paginate: config ; index as i">
+              <td scope="row">{{ (config.currentPage - 1) * config.itemsPerPage + i +1 }}.</td>
+              <td>{{data.created_at | slice:0:10 | date:'MMM dd , yyyy'}}</td>
+              <td *ngIf="data.rating <= 6"><img src="assets/images/sad-red.svg"></td>
+              <td *ngIf="data.rating == 7 || data.rating == 8"><img src="assets/images/sad-yellow.svg"></td>
+              <td *ngIf="data.rating == 9 || data.rating == 10"><img src="assets/images/sad-green.svg"></td>
+              <td>{{data.rating}}</td>
+              <td>{{data.loan_name}}</td>
+              <td>{{data.user_name}}</td>
+              <td>{{data.phone}}</td>
+              <td>{{data.description}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="custmPage">
+        <pagination-controls (pageChange)="pageChange($event)"></pagination-controls>
+      </div>
+    </div>
+</div>

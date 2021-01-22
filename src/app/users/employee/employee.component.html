@@ -1,0 +1,79 @@
+<aside>
+	<app-navbar></app-navbar>
+</aside>
+<h4 class="heading"><span>User Management / Employee</span> <span><a routerLink="/adduser">Add New User<img
+        src="assets/images/add.svg"></a></span></h4>
+
+
+
+<form class="searchform">
+    <button><img src="assets/images/search.svg"></button>
+    <input placeholder="Type here to search Users ……." type="text" name="searchTerm" [(ngModel)]="service.searchTerm" />
+    <span class="ml-3" *ngIf="service.loading$ | async">Loading...</span>
+</form>
+
+<table class="tabledark">
+    <thead>
+        <tr>
+            <th scope="col" width="70">Sr No.</th>
+            <th scope="col" sortable="Avatar" (sort)="onSort($event)" width="80">Avatar</th>
+            <th scope="col" sortable="name" (sort)="onSort($event)">Full Name</th>
+            <th scope="col" sortable="email" (sort)="onSort($event)">Email Address</th>
+            <th scope="col" sortable="contact" (sort)="onSort($event)">Contact No.</th>
+            <th scope="col" sortable="created" (sort)="onSort($event)">Created On</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let country of employ$ | async">
+            <td scope="row">{{ country.id }}</td>
+            <td>
+                <div class="tableimg">
+                    <img [src]=" country.flag" onerror="this.onerror=null; this.src='assets/images/avtar.svg'">
+                </div>
+            </td>
+            <td>
+                <ngb-highlight [result]="country.name" [term]="service.searchTerm"></ngb-highlight>
+            </td>
+            <td>
+                <ngb-highlight [result]="country.email " [term]="service.searchTerm"></ngb-highlight>
+            </td>
+            <td>
+                <ngb-highlight [result]="country.contact | number" [term]="service.searchTerm"></ngb-highlight>
+            </td>
+            <td>
+                <ngb-highlight [result]="country.created " [term]="service.searchTerm"></ngb-highlight><br>
+                <small>
+          <ngb-highlight [result]="country.time " [term]="service.searchTerm"></ngb-highlight>
+        </small>
+            </td>
+            <td>
+                <div>
+                    <!-- <img src='assets/images/menu-icon.svg' alt=""> -->
+                    <div ngbDropdown class="drop">
+                        <button id="dropdownBasic1" ngbDropdownToggle><img src='assets/images/menu-icon.svg' alt=""> <img
+                src='assets/images/menu-color.svg' class="menucolor"></button>
+                        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                            <a routerLink="/userdetails/{{ country.id }}" ngbDropdownItem>View</a>
+                            <a href="#" ngbDropdownItem>Edit</a>
+                            <a href="#" ngbDropdownItem>Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="d-flex justify-content-between p-2">
+    <ngb-pagination [collectionSize]="total$ | async" [(page)]="service.page" [pageSize]="service.pageSize">
+    </ngb-pagination>
+
+    <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize">
+    <option [ngValue]="10">10 items per page</option>
+    <option [ngValue]="25">25 items per page</option>
+    <option [ngValue]="50">50 items per page</option>
+    <option [ngValue]="75">75 items per page</option>
+    <option [ngValue]="100">100 items per page</option>
+  </select>
+</div>

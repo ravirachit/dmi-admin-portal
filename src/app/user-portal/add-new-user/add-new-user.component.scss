@@ -1,0 +1,127 @@
+.input{
+    background: none;
+    border: 1px solid #FFD96A;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    color: white;
+    margin-left: 60px;
+}
+.btn{
+    padding: 5% !important;
+    border: 1px solid #FFD96A;
+    color: #FFD96A !important;
+    line-height: 5px !important;
+    font-size: 15.5px !important;
+    margin-top: 10px;
+    margin-left: 80px;
+    &:hover{
+        border: 1px solid #FFD96A !important;
+        border-color: #FFD96A !important;
+        color: #FFFFFF !important;
+    }
+}
+
+.head{
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}
+.detailSection{
+    font-size: 17px;
+    font-weight: 530;
+    color: #FFD96A;
+    border-bottom: 1px solid #FFFFFF;
+  }
+
+  .selLoans{
+    border-color: #FFD96A !important;
+    margin-top: 15px !important;
+    margin-left: 0px !important;
+  }
+
+  .custom-select{
+    border-color: #FFD96A !important;
+    margin-top: 15px !important;
+    margin-left: 60px;
+  }
+.statbox{
+    p{
+        opacity:2 !important;
+    }
+}
+.selection{
+    margin-top: 35px;
+    margin-left: 45px;
+}
+.checkLoan{
+    margin-left: 15px;
+}
+.container {
+    display: block;
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Hide the browser's default checkbox */
+  .container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  /* Create a custom checkbox */
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 17px;
+    width: 17px;
+    background-color: #eee;
+  }
+  
+  /* On mouse-over, add a grey background color */
+  .container:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+  
+  /* When the checkbox is checked, add a blue background */
+  .container input:checked ~ .checkmark {
+    background-color: #FFFFFF;
+  }
+  
+  /* Create the checkmark/indicator (hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the checkmark when checked */
+  .container input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  /* Style the checkmark/indicator */
+  .container .checkmark:after {
+    left: 6px;
+    top: 3px;
+    width: 5px;
+    height: 9px;
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+.loanDetails{
+    margin-top: 28px;
+}

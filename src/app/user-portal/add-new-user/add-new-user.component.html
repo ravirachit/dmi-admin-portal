@@ -1,0 +1,132 @@
+<aside>
+  <app-navbar></app-navbar>
+</aside>
+
+<div *ngIf="state == '0'">
+    <h4 class="heading">
+        <span>Add New User</span>
+      </h4>
+      
+    <div class="col-sm-12">
+      <div class="statbox">
+    
+      <div class="row">
+        <div class="col-sm-5">
+            <input type="text" class="input" placeholder="Enter User Name" [(ngModel)]="userName">
+        </div>
+  
+        <div class="col-sm-5">
+            <input type="email" class="input" placeholder="Enter User Email" [(ngModel)]="userEmail">
+        </div>
+      </div>
+  
+      <div class="row">
+        <div class="col-sm-5">
+            <input type="number" class="input" placeholder="Enter User Phone" [(ngModel)]="userPhone">
+        </div>
+  
+        <div class="col-sm-5">
+            <input type="password" class="input" placeholder="Enter User Password" [(ngModel)]="userPass">
+        </div>
+      </div>
+  
+  
+      <div class="selection col-sm-10">
+        <p class="detailSection">Assign Loan Company</p>
+  
+        <!-- <div class="row loanDetails">
+          <div class="checkLoan" *ngFor="let data of loanCompanies">  
+              <label class="container">{{data.name}}
+                <input type="checkbox" (change)="onChange(data.name)">
+                <span class="checkmark"></span>
+              </label>
+          </div>
+        </div> -->
+
+        <div class="row loanDetails">
+          <div class="col-sm-6">
+              <!-- <input type="checkbox">{{data.name}} -->
+  
+              <!-- <label class="container">{{data.name}} -->
+                <!-- <input type="checkbox" [checked]="data.checked" (change)="onChange(data.name)">
+                <span class="checkmark"></span> -->
+
+                  <select [(ngModel)]="selectedLoans" class="custom-select selLoans" (change)="changedLoan(selectedLoans)">
+                    <option *ngFor="let data of loanCompanies">{{data.name}}</option>
+                  </select>
+              <!-- </label> -->
+          </div>
+        </div>
+      </div> 
+      
+      <div class="col-sm-10 head">
+          <div class="col-sm-4">
+            <button class="btn btn-dark btn-position" (click)="addNewUser()">Add</button>
+          </div>
+      </div>
+  
+    </div>
+  </div>
+</div>
+
+
+<div *ngIf="state == '1'">
+    <h4 class="heading">
+      <span>Update User Details</span>
+    </h4>
+      
+    <div class="col-sm-12">
+      <div class="statbox">
+    
+      <div class="row">
+        <div class="col-sm-5">
+            <input type="text" class="input" placeholder="Enter User Name" [(ngModel)]="editName">
+        </div>
+  
+        <div class="col-sm-5">
+            <!-- <input type="email" class="input" placeholder="Enter User Email" [(ngModel)]="editEmail"> -->
+            <select [(ngModel)]="selectValue" class="custom-select" (change)="changedValue(selectValue)">
+                <option *ngFor="let status of partnStatus">{{status.name}}</option>
+            </select>
+        </div>
+      </div>
+  
+      <!-- <div class="row">
+        <div class="col-sm-5">
+            <input type="number" class="input" placeholder="Enter User Phone" [(ngModel)]="editPhone">
+        </div>
+  
+        <div class="col-sm-5">
+            <input type="password" class="input" placeholder="Enter User Password" [(ngModel)]="editPass">
+        </div>
+      </div> -->
+  
+  
+      <div class="selection col-sm-10">
+        <p class="detailSection">Assign Loan Company</p>
+  
+        <div class="row loanDetails">
+          <div class="col-sm-6">
+              <!-- <input type="checkbox">{{data.name}} -->
+  
+              <!-- <label class="container">{{data.name}} -->
+                <!-- <input type="checkbox" [checked]="data.checked" (change)="onChange(data.name)">
+                <span class="checkmark"></span> -->
+
+                  <select [(ngModel)]="selectedLoans" class="custom-select selLoans" (change)="changedLoan(selectedLoans)">
+                    <option *ngFor="let data of loanCompanies">{{data.name}}</option>
+                  </select>
+              <!-- </label> -->
+          </div>
+        </div>
+      </div> 
+      
+      <div class="col-sm-10 head">
+          <div class="col-sm-4">
+            <button class="btn btn-dark btn-position" (click)="editUserDetails()">Edit User</button>
+          </div>
+      </div>
+  
+    </div>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+<aside>
+	<app-navbar></app-navbar>
+</aside>
+<h4 class="heading"><span>Update FAQ</span> </h4>
+<div class="row">
+    <div class="col-sm-12">
+        <label>Question</label>
+        <input type="text" [(ngModel)]="faqQuestion" class="input"><br><br>
+    </div>
+</div>
+<p></p>
+<label>Answer</label>
+<angular-editor [placeholder]="'Enter text here...'" [(ngModel)]="faqAnswer" [config]="config"></angular-editor><br><br>
+<button type="button" class="btn-dark " (click)="updateFAQ()">Update</button>

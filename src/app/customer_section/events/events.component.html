@@ -1,0 +1,1052 @@
+<aside>
+	<app-navbar></app-navbar>
+</aside>
+<h4 class="heading">
+  <span>Customer Portal Events</span>
+</h4>
+
+<div class="col-sm-12">
+  <div class="statbox">
+
+    <div class="row">
+        <div class="col-sm-2 row section" style="margin-left: 2px">
+            <!-- <label class="labelHead">Select Option : </label> -->
+            <div class="selectionHead row">
+              <div ngbDropdown class="d-inline-block">
+                <button class="btn btn-outline-dark" id="dropdownButton" ngbDropdownToggle>{{selectedUser1}}</button>
+                <div ngbDropdownMenu aria-labelledby="dropdownButton">
+                  <li *ngFor="let list of optionList" (click)="itemSelected1(list.name,list.id)" ngbDropdownItem>{{list.name}}</li>
+                </div>
+              </div>
+              <!-- <p class="headerP">VS</p>
+              <div ngbDropdown class="d-inline-block lineHead">
+                <button class="btn btn-outline-dark" id="dropdownButton" ngbDropdownToggle>{{selectedUser2}}</button>
+                <div ngbDropdownMenu aria-labelledby="dropdownButton" class="menuList">
+                    <li *ngFor="let list of optionList" (click)="itemSelected2(list.name,list.id)" ngbDropdownItem>{{list.name}}</li>
+                  </div>
+              </div> -->
+            </div>
+          </div>
+      
+          <div class="col-sm-10 row section">
+              <!-- <label class="labelHead">Select Date : </label> -->
+              <div class="selectionHeadDate row">  
+                <input class="input" placeholder="Start Date" [(ngModel)]="startDate" ngbDatepicker #dS="ngbDatepicker" [minDate]="startMaxDate" [maxDate]="currentDate">
+                <div>
+                    <button class="btn btn-outline-secondary calendar selectDate" (click)="dS.toggle()" type="button"><img src="assets/calendar-yellow.svg" height="20px" width="20px"></button>
+                </div>
+      
+                <p class="date">To</p>  
+      
+                <input class="input" placeholder="End Date" [(ngModel)]="endDate" ngbDatepicker #d="ngbDatepicker" [minDate]="startMaxDate" [maxDate]="currentDate">
+                <div>
+                    <button class="btn btn-outline-secondary calendar selectDate" (click)="d.toggle()" type="button"><img src="assets/calendar-yellow.svg" height="20px" width="20px"></button>
+                </div>  
+                  
+                  
+                <div class="searchbtn col-sm-5">
+                    <span>
+                      <button class="btn btn-dark btn-position" style="margin-left: 15px;" (click)="searchData()">Search</button>
+                      <button class="btn btn-dark btn-position" style="margin-left: 15px;" (click)="download()">Download Reports</button>
+                      <button class="btn btn-dark btn-position" style="margin-left: 15px;" (click)="downloadExcel()">Download Excel</button>
+                    </span>
+                </div>
+              </div>   
+          </div>
+    </div>
+
+    <!-- <div class="downloadCSV">
+        <a href="javascript:void(0)" (click)="download()"><small style="color: #ffd96a">Download Reports </small></a>
+    </div> -->
+  </div>
+</div>
+
+<div class="pieChart">
+  <div class="col-sm-12">
+    <div class="statbox">
+      <div style="display: block;">
+        <canvas *ngIf="lineChartLabels" class="lineChartView" baseChart
+          [datasets]="lineChartData"
+          [labels]="lineChartLabels"
+          [chartType]="lineChartType"
+          [colors]="lineChartColors"
+          [legend]="lineChartLegend"
+          [options]="lineChartOptions">
+        </canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="col-sm-12">
+      <div class="statbox">
+         
+      </div>
+    </div> -->
+
+  <div class="col-sm-12 lineChart">
+    <div class="statbox row">
+      <div class="col-sm-8">
+
+        <div class="row">
+            <div class="col-sm-3 statboxGraph">
+                <div>
+                  <p class="graphDetails" style="font-size: 15px">Total Logins :</p>
+                </div>
+                <div style="margin-top: 30px; color: #FFD96A">
+                  <p class="graphDetails">{{totalLoginUsers}}</p>
+                </div>
+                <div *ngIf="sChartData1">
+                    <canvas baseChart width="150" height="50"
+                    [datasets]="sChartData1"
+                    [labels]="sChartLabels"
+                    [options]="sChartOptions"
+                    [colors]="sChartColors"
+                    [legend]="sChartLegend"
+                    [chartType]="sChartType"
+                    [plugins]="sChartPlugins">
+                  </canvas>
+                </div>
+              </div>
+
+              <div class="col-sm-3 statboxGraph statDetail">
+                  <div>
+                    <p class="graphDetails" style="font-size: 15px">Total Unique Logins :</p>
+                  </div>
+                  <div style="margin-top: 10px;color: #FFD96A">
+                    <p class="graphDetails">{{uniqueLoginUsers}}</p>
+                    <!-- <p class="graphDetails">3505</p> -->
+
+                  </div>
+                  <div>
+                      <canvas *ngIf="sChartData3" baseChart width="150" height="50"
+                      [datasets]="sChartData3"
+                      [labels]="sChartLabels"
+                      [options]="sChartOptions"
+                      [colors]="sChartColors"
+                      [legend]="sChartLegend"
+                      [chartType]="sChartType"
+                      [plugins]="sChartPlugins">
+                    </canvas>
+                  </div>
+                </div>
+      
+              <div class="col-sm-3 statboxGraph statDetail">
+                <div>
+                  <p class="graphDetails" style="font-size: 15px">Today Logins :</p>
+                </div>
+                <div style="margin-top: 30px; color: #FFD96A">
+                  <p class="graphDetails">{{todayLoginUsers}}</p>
+                </div>
+                <div *ngIf="sChartData2">
+                    <canvas baseChart width="150" height="50"
+                    [datasets]="sChartData2"
+                    [labels]="sChartLabels"
+                    [options]="sChartOptions"
+                    [colors]="sChartColors"
+                    [legend]="sChartLegend"
+                    [chartType]="sChartType"
+                    [plugins]="sChartPlugins">
+                  </canvas>
+                </div>
+              </div>
+
+              
+        </div>
+
+        <div class="row graph">
+            <div class="col-sm-3 statboxGraph">
+                <div>
+                  <p class="graphDetails" style="font-size: 15px">Total Dashboard :</p>
+                </div>
+                <div style="margin-top: 30px; color: #FFD96A">
+                  <p class="graphDetails">{{totalDashboardUsers}}</p>
+                </div>
+                <div *ngIf="sDashboard1">
+                    <canvas baseChart width="150" height="50"
+                    [datasets]="sDashboard1"
+                    [labels]="sChartLabels"
+                    [options]="sChartOptions"
+                    [colors]="sChartColors"
+                    [legend]="sChartLegend"
+                    [chartType]="sChartType"
+                    [plugins]="sChartPlugins">
+                  </canvas>
+                </div>
+              </div>
+
+              <div class="col-sm-3 statboxGraph statDetail">
+                  <div>
+                    <p class="graphDetails" style="font-size: 15px">Total Unique Dashbaord :</p>
+                  </div>
+                  <div style="margin-top: 10px;color: #FFD96A">
+                    <p class="graphDetails">{{uniqueDashboardUsers}}</p>
+                  </div>
+                  <div>
+                      <canvas *ngIf="sDashboard3" baseChart width="150" height="50"
+                      [datasets]="sDashboard3"
+                      [labels]="sChartLabels"
+                      [options]="sChartOptions"
+                      [colors]="sChartColors"
+                      [legend]="sChartLegend"
+                      [chartType]="sChartType"
+                      [plugins]="sChartPlugins">
+                    </canvas>
+                  </div>
+                </div>
+      
+              <div class="col-sm-3 statboxGraph statDetail">
+                <div>
+                  <p class="graphDetails" style="font-size: 15px">Today Dashboard :</p>
+                </div>
+                <div style="margin-top: 30px; color: #FFD96A">
+                  <p class="graphDetails">{{todayDashboardUsers}}</p>
+                </div>
+                <div *ngIf="sDashboard2">
+                    <canvas baseChart width="150" height="50"
+                    [datasets]="sDashboard2"
+                    [labels]="sChartLabels"
+                    [options]="sChartOptions"
+                    [colors]="sChartColors"
+                    [legend]="sChartLegend"
+                    [chartType]="sChartType"
+                    [plugins]="sChartPlugins">
+                  </canvas>
+                </div>
+              </div>
+
+              
+        </div>
+      </div>
+
+      <div class="col-sm-4" style="display: block;">
+        <div class="chart-container" style="height: 320px ; width: 200px ; margin-top: -30px">
+            <canvas *ngIf="pieChartData" baseChart
+            [data]="pieChartData" 
+            [labels]="pieChartLabels" 
+            [chartType]="pieChartType"
+            [colors]="pieChartColors"
+            [options]="pieChartOptions">
+          </canvas>
+        </div>
+      </div>
+    </div>
+
+    <div class="statbox col-sm-12 lineChartGraph">
+      <div class="row newGraph">
+        <div class="col-sm-3 statboxGraph">
+            <div class="row">
+              <p class="graphDetailsGraph" style="font-size: 15px">Total Loans :</p><p style="color: #FFD96A" class="graphDetailsGraph">{{totalloansUsers}}</p>
+            </div>
+            <div *ngIf="sLoanDetails1">
+                <canvas baseChart width="200" height="50"
+                [datasets]="sLoanDetails1"
+                [labels]="sChartLabels"
+                [options]="sChartOptions"
+                [colors]="sChartColors"
+                [legend]="sChartLegend"
+                [chartType]="sChartType"
+                [plugins]="sChartPlugins">
+              </canvas>
+            </div>
+          </div>
+
+          <div class="col-sm-3 statboxGraph statDetail">
+              <div class="row">
+                <p class="graphDetailsGraph" style="font-size: 15px">Total Unique Loans :</p><p style="color: #FFD96A" class="graphDetailsGraph">{{uniqueloansUsers}}</p>
+              </div>
+              <div>
+                  <canvas *ngIf="sLoanDetails3" baseChart width="200" height="50"
+                  [datasets]="sLoanDetails3"
+                  [labels]="sChartLabels"
+                  [options]="sChartOptions"
+                  [colors]="sChartColors"
+                  [legend]="sChartLegend"
+                  [chartType]="sChartType"
+                  [plugins]="sChartPlugins">
+                </canvas>
+              </div>
+            </div>
+  
+          <div class="col-sm-3 statboxGraph statDetail">
+              <div class="row">
+                <p class="graphDetailsGraph" style="font-size: 15px">Today Loans :</p><p style="color: #FFD96A" class="graphDetailsGraph">{{todayloansUsers}}</p>
+              </div>
+            <div *ngIf="sLoanDetails2">
+                <canvas baseChart width="200" height="50"
+                [datasets]="sLoanDetails2"
+                [labels]="sChartLabels"
+                [options]="sChartOptions"
+                [colors]="sChartColors"
+                [legend]="sChartLegend"
+                [chartType]="sChartType"
+                [plugins]="sChartPlugins">
+              </canvas>
+            </div>
+          </div>
+
+          
+      </div>
+
+      <div class="row newGraph listGraph">
+          <div class="col-sm-3 statboxGraph">
+              <div class="row">
+                <p class="graphDetailsGraph" style="font-size: 15px">Total Letters :</p><p style="color: #FFD96A" class="graphDetailsGraph">{{totalwelcomeUsers}}</p>
+              </div>
+              <div *ngIf="swelcomeLetter1">
+                  <canvas baseChart width="200" height="50"
+                  [datasets]="swelcomeLetter1"
+                  [labels]="sChartLabels"
+                  [options]="sChartOptions"
+                  [colors]="sChartColors"
+                  [legend]="sChartLegend"
+                  [chartType]="sChartType"
+                  [plugins]="sChartPlugins">
+                </canvas>
+              </div>
+            </div>
+
+            <div class="col-sm-3 statboxGraph statDetail">
+                <div class="row">
+                  <p class="graphDetailsGraph" style="font-size: 15px">Total Unique Letters :</p><p style="color: #FFD96A" class="graphDetailsGraph">{{uniquewelcomeUsers}}</p>
+                </div>
+                <div>
+                    <canvas *ngIf="swelcomeLetter3" baseChart width="200" height="50"
+                    [datasets]="swelcomeLetter3"
+                    [labels]="sChartLabels"
+                    [options]="sChartOptions"
+                    [colors]="sChartColors"
+                    [legend]="sChartLegend"
+                    [chartType]="sChartType"
+                    [plugins]="sChartPlugins">
+                  </canvas>
+                </div>
+              </div>
+    
+            <div class="col-sm-3 statboxGraph statDetail">
+                <div class="row">
+                  <p class="graphDetailsGraph" style="font-size: 15px">Today Letters :</p><p style="color: #FFD96A" class="graphDetailsGraph">{{todaywelcomeUsers}}</p>
+                </div>
+              <div *ngIf="swelcomeLetter2">
+                  <canvas baseChart width="200" height="50"
+                  [datasets]="swelcomeLetter2"
+                  [labels]="sChartLabels"
+                  [options]="sChartOptions"
+                  [colors]="sChartColors"
+                  [legend]="sChartLegend"
+                  [chartType]="sChartType"
+                  [plugins]="sChartPlugins">
+                </canvas>
+              </div>
+            </div>
+
+            
+      </div>
+
+      <div class="row newGraph listGraph">
+          <div class="col-sm-3 statboxGraph">
+              <div class="row">
+                <p class="graphDetailsGraph" style="font-size: 15px">Total Noc :</p><p style="color: #FFD96A" class="graphDetailsGraph">{{totalnocUsers}}</p>
+              </div>
+              <div *ngIf="snoc1">
+                  <canvas baseChart width="200" height="50"
+                  [datasets]="snoc1"
+                  [labels]="sChartLabels"
+                  [options]="sChartOptions"
+                  [colors]="sChartColors"
+                  [legend]="sChartLegend"
+                  [chartType]="sChartType"
+                  [plugins]="sChartPlugins">
+                </canvas>
+              </div>
+            </div>
+
+            <div class="col-sm-3 statboxGraph statDetail">
+                <div class="row">
+                  <p class="graphDetailsGraph" style="font-size: 15px">Total Unique Noc :</p><p style="color: #FFD96A" class="graphDetailsGraph">{{uniquenocUsers}}</p>
+                </div>
+                <div>
+                    <canvas *ngIf="snoc3" baseChart width="200" height="50"
+                    [datasets]="snoc3"
+                    [labels]="sChartLabels"
+                    [options]="sChartOptions"
+                    [colors]="sChartColors"
+                    [legend]="sChartLegend"
+                    [chartType]="sChartType"
+                    [plugins]="sChartPlugins">
+                  </canvas>
+                </div>
+              </div>
+    
+            <div class="col-sm-3 statboxGraph statDetail">
+                <div class="row">
+                  <p class="graphDetailsGraph" style="font-size: 15px">Today Noc :</p><p style="color: #FFD96A" class="graphDetailsGraph">{{todaynocUsers}}</p>
+                </div>
+              <div *ngIf="snoc2">
+                  <canvas baseChart width="200" height="50"
+                  [datasets]="snoc2"
+                  [labels]="sChartLabels"
+                  [options]="sChartOptions"
+                  [colors]="sChartColors"
+                  [legend]="sChartLegend"
+                  [chartType]="sChartType"
+                  [plugins]="sChartPlugins">
+                </canvas>
+              </div>
+            </div>
+
+            
+      </div>
+    </div>
+
+    <div class="statbox col-sm-12 lineChartGraph">
+        <div class="row newGraph">
+            <div class="col-sm-3 statboxGraph">
+                <div class="row">
+                  <p class="graphDetailsGraph" style="font-size: 15px">Total Payment Summary:</p><p style="color: #FFD96A" class="graphDetailsGraph">{{totalpaymentSummaryUsers}}</p>
+                </div>
+                <div *ngIf="spaymentsummary1">
+                    <canvas baseChart width="200" height="50"
+                    [datasets]="spaymentsummary1"
+                    [labels]="sChartLabels"
+                    [options]="sChartOptions"
+                    [colors]="sChartColors"
+                    [legend]="sChartLegend"
+                    [chartType]="sChartType"
+                    [plugins]="sChartPlugins">
+                  </canvas>
+                </div>
+              </div>
+
+              <div class="col-sm-3 statboxGraph statDetail">
+                  <div class="row">
+                    <p class="graphDetailsGraph" style="font-size: 15px">Total Unique Payment Summary:</p><p style="color: #FFD96A" class="graphDetailsGraph">{{uniquepaymentSummaryUsers}}</p>
+                  </div>
+                  <div>
+                      <canvas *ngIf="spaymentsummary3" baseChart width="200" height="50"
+                      [datasets]="spaymentsummary3"
+                      [labels]="sChartLabels"
+                      [options]="sChartOptions"
+                      [colors]="sChartColors"
+                      [legend]="sChartLegend"
+                      [chartType]="sChartType"
+                      [plugins]="sChartPlugins">
+                    </canvas>
+                  </div>
+                </div>
+      
+              <div class="col-sm-3 statboxGraph statDetail">
+                  <div class="row">
+                    <p class="graphDetailsGraph" style="font-size: 15px">Today Payment Summary:</p><p style="color: #FFD96A" class="graphDetailsGraph">{{todaypaymentSummaryUsers}}</p>
+                  </div>
+                <div *ngIf="spaymentsummary2">
+                    <canvas baseChart width="200" height="50"
+                    [datasets]="spaymentsummary2"
+                    [labels]="sChartLabels"
+                    [options]="sChartOptions"
+                    [colors]="sChartColors"
+                    [legend]="sChartLegend"
+                    [chartType]="sChartType"
+                    [plugins]="sChartPlugins">
+                  </canvas>
+                </div>
+              </div>
+  
+              
+        </div>
+  
+        <div class="row newGraph listGraph">
+            <div class="col-sm-3 statboxGraph">
+                <div class="row">
+                  <p class="graphDetailsGraph" style="font-size: 15px">Total Download Payment Summary:</p><p style="color: #FFD96A" class="graphDetailsGraph">{{totaldownloadpaymentUsers}}</p>
+                </div>
+                <div *ngIf="spaymentsummarydown1">
+                    <canvas baseChart width="200" height="50"
+                    [datasets]="spaymentsummarydown1"
+                    [labels]="sChartLabels"
+                    [options]="sChartOptions"
+                    [colors]="sChartColors"
+                    [legend]="sChartLegend"
+                    [chartType]="sChartType"
+                    [plugins]="sChartPlugins">
+                  </canvas>
+                </div>
+              </div>
+
+              <div class="col-sm-3 statboxGraph statDetail">
+                  <div class="row">
+                    <p class="graphDetailsGraph" style="font-size: 15px">Total Unique Download Payment Summary :</p><p style="color: #FFD96A" class="graphDetailsGraph">{{uniquedownloadpaymentUsers}}</p>
+                  </div>
+                  <div>
+                      <canvas *ngIf="spaymentsummarydown3" baseChart width="200" height="50"
+                      [datasets]="spaymentsummarydown3"
+                      [labels]="sChartLabels"
+                      [options]="sChartOptions"
+                      [colors]="sChartColors"
+                      [legend]="sChartLegend"
+                      [chartType]="sChartType"
+                      [plugins]="sChartPlugins">
+                    </canvas>
+                  </div>
+                </div>
+      
+              <div class="col-sm-3 statboxGraph statDetail">
+                  <div class="row">
+                    <p class="graphDetailsGraph" style="font-size: 15px">Today Download Payment Summary:</p><p style="color: #FFD96A" class="graphDetailsGraph">{{todaydownloadpaymentUsers}}</p>
+                  </div>
+                <div *ngIf="spaymentsummarydown2">
+                    <canvas baseChart width="200" height="50"
+                    [datasets]="spaymentsummarydown2"
+                    [labels]="sChartLabels"
+                    [options]="sChartOptions"
+                    [colors]="sChartColors"
+                    [legend]="sChartLegend"
+                    [chartType]="sChartType"
+                    [plugins]="sChartPlugins">
+                  </canvas>
+                </div>
+              </div>
+  
+              
+        </div>
+
+        <div class="row newGraph listGraph">
+            <div class="col-sm-3 statboxGraph">
+                <div class="row">
+                  <p class="graphDetailsGraph" style="font-size: 15px">Total Blogs :</p><p style="color: #FFD96A" class="graphDetailsGraph">{{totalblogsUsers}}</p>
+                </div>
+                <div *ngIf="stotalblogs1">
+                    <canvas baseChart width="200" height="50"
+                    [datasets]="stotalblogs1"
+                    [labels]="sChartLabels"
+                    [options]="sChartOptions"
+                    [colors]="sChartColors"
+                    [legend]="sChartLegend"
+                    [chartType]="sChartType"
+                    [plugins]="sChartPlugins">
+                  </canvas>
+                </div>
+              </div>
+
+              <div class="col-sm-3 statboxGraph statDetail">
+                  <div class="row">
+                    <p class="graphDetailsGraph" style="font-size: 15px">Total Unique Blogs :</p><p style="color: #FFD96A" class="graphDetailsGraph">{{uniqueblogsUsers}}</p>
+                  </div>
+                  <div>
+                      <canvas *ngIf="stotalblogs3" baseChart width="200" height="50"
+                      [datasets]="stotalblogs3"
+                      [labels]="sChartLabels"
+                      [options]="sChartOptions"
+                      [colors]="sChartColors"
+                      [legend]="sChartLegend"
+                      [chartType]="sChartType"
+                      [plugins]="sChartPlugins">
+                    </canvas>
+                  </div>
+                </div>
+      
+              <div class="col-sm-3 statboxGraph statDetail">
+                  <div class="row">
+                    <p class="graphDetailsGraph" style="font-size: 15px">Today Blogs :</p><p style="color: #FFD96A" class="graphDetailsGraph">{{todayblogsUsers}}</p>
+                  </div>
+                <div *ngIf="stotalblogs2">
+                    <canvas baseChart width="200" height="50"
+                    [datasets]="stotalblogs2"
+                    [labels]="sChartLabels"
+                    [options]="sChartOptions"
+                    [colors]="sChartColors"
+                    [legend]="sChartLegend"
+                    [chartType]="sChartType"
+                    [plugins]="sChartPlugins">
+                  </canvas>
+                </div>
+              </div>
+        </div>
+    </div>
+
+    <div class="statbox col-sm-12 lineChartGraph">
+        <div class="row newGraph">
+            <div class="col-sm-3 statboxGraph">
+                <div class="row">
+                  <p class="graphDetailsGraph" style="font-size: 15px">Total Blog Details:</p><p style="color: #FFD96A" class="graphDetailsGraph">{{totalblogsdetailsUsers}}</p>
+                </div>
+                <div *ngIf="stotalblogsdetails1">
+                    <canvas baseChart width="200" height="50"
+                    [datasets]="stotalblogsdetails1"
+                    [labels]="sChartLabels"
+                    [options]="sChartOptions"
+                    [colors]="sChartColors"
+                    [legend]="sChartLegend"
+                    [chartType]="sChartType"
+                    [plugins]="sChartPlugins">
+                  </canvas>
+                </div>
+              </div>
+
+              <div class="col-sm-3 statboxGraph statDetail">
+                  <div class="row">
+                    <p class="graphDetailsGraph" style="font-size: 15px">Total Unique Blog Details:</p><p style="color: #FFD96A" class="graphDetailsGraph">{{uniqueblogsdetailsUsers}}</p>
+                  </div>
+                  <div>
+                      <canvas *ngIf="stotalblogsdetails3" baseChart width="200" height="50"
+                      [datasets]="stotalblogsdetails3"
+                      [labels]="sChartLabels"
+                      [options]="sChartOptions"
+                      [colors]="sChartColors"
+                      [legend]="sChartLegend"
+                      [chartType]="sChartType"
+                      [plugins]="sChartPlugins">
+                    </canvas>
+                  </div>
+                </div>
+      
+              <div class="col-sm-3 statboxGraph statDetail">
+                  <div class="row">
+                    <p class="graphDetailsGraph" style="font-size: 15px">Today Blog Details:</p><p style="color: #FFD96A" class="graphDetailsGraph">{{todayblogsdetailsUsers}}</p>
+                  </div>
+                <div *ngIf="stotalblogsdetails2">
+                    <canvas baseChart width="200" height="50"
+                    [datasets]="stotalblogsdetails2"
+                    [labels]="sChartLabels"
+                    [options]="sChartOptions"
+                    [colors]="sChartColors"
+                    [legend]="sChartLegend"
+                    [chartType]="sChartType"
+                    [plugins]="sChartPlugins">
+                  </canvas>
+                </div>
+              </div>
+        </div>
+  
+        <div class="row newGraph listGraph">
+            <div class="col-sm-3 statboxGraph">
+                <div class="row">
+                  <p class="graphDetailsGraph" style="font-size: 15px">Total Ticket Pages :</p><p style="color: #FFD96A" class="graphDetailsGraph">{{totalticketpageUsers}}</p>
+                </div>
+                <div *ngIf="sticketPage1">
+                    <canvas baseChart width="200" height="50"
+                    [datasets]="sticketPage1"
+                    [labels]="sChartLabels"
+                    [options]="sChartOptions"
+                    [colors]="sChartColors"
+                    [legend]="sChartLegend"
+                    [chartType]="sChartType"
+                    [plugins]="sChartPlugins">
+                  </canvas>
+                </div>
+              </div>
+
+              <div class="col-sm-3 statboxGraph statDetail">
+                  <div class="row">
+                    <p class="graphDetailsGraph" style="font-size: 15px">Total Unique Ticket Pages :</p><p style="color: #FFD96A" class="graphDetailsGraph">{{uniqueticketpageUsers}}</p>
+                  </div>
+                  <div>
+                      <canvas *ngIf="sticketPage3" baseChart width="200" height="50"
+                      [datasets]="sticketPage3"
+                      [labels]="sChartLabels"
+                      [options]="sChartOptions"
+                      [colors]="sChartColors"
+                      [legend]="sChartLegend"
+                      [chartType]="sChartType"
+                      [plugins]="sChartPlugins">
+                    </canvas>
+                  </div>
+                </div>
+      
+              <div class="col-sm-3 statboxGraph statDetail">
+                  <div class="row">
+                    <p class="graphDetailsGraph" style="font-size: 15px">Today Ticket Pages :</p><p style="color: #FFD96A" class="graphDetailsGraph">{{todayticketpageUsers}}</p>
+                  </div>
+                <div *ngIf="sticketPage2">
+                    <canvas baseChart width="200" height="50"
+                    [datasets]="sticketPage2"
+                    [labels]="sChartLabels"
+                    [options]="sChartOptions"
+                    [colors]="sChartColors"
+                    [legend]="sChartLegend"
+                    [chartType]="sChartType"
+                    [plugins]="sChartPlugins">
+                  </canvas>
+                </div>
+              </div>
+        </div>
+
+        <div class="row newGraph listGraph">
+            <div class="col-sm-3 statboxGraph">
+                <div class="row">
+                  <p class="graphDetailsGraph" style="font-size: 15px">Total Ticket Created :</p><p style="color: #FFD96A" class="graphDetailsGraph">{{totalticketUsers}}</p>
+                </div>
+                <div *ngIf="sticketCreated1">
+                    <canvas baseChart width="200" height="50"
+                    [datasets]="sticketCreated1"
+                    [labels]="sChartLabels"
+                    [options]="sChartOptions"
+                    [colors]="sChartColors"
+                    [legend]="sChartLegend"
+                    [chartType]="sChartType"
+                    [plugins]="sChartPlugins">
+                  </canvas>
+                </div>
+              </div>
+
+              <div class="col-sm-3 statboxGraph statDetail">
+                  <div class="row">
+                    <p class="graphDetailsGraph" style="font-size: 15px">Total Unique Ticket Created :</p><p style="color: #FFD96A" class="graphDetailsGraph">{{uniqueticketUsers}}</p>
+                  </div>
+                  <div>
+                      <canvas *ngIf="sticketCreated3" baseChart width="200" height="50"
+                      [datasets]="sticketCreated3"
+                      [labels]="sChartLabels"
+                      [options]="sChartOptions"
+                      [colors]="sChartColors"
+                      [legend]="sChartLegend"
+                      [chartType]="sChartType"
+                      [plugins]="sChartPlugins">
+                    </canvas>
+                  </div>
+                </div>
+      
+              <div class="col-sm-3 statboxGraph statDetail">
+                  <div class="row">
+                    <p class="graphDetailsGraph" style="font-size: 15px">Today Ticket Created :</p><p style="color: #FFD96A" class="graphDetailsGraph">{{todayticketUsers}}</p>
+                  </div>
+                <div *ngIf="sticketCreated2">
+                    <canvas baseChart width="200" height="50"
+                    [datasets]="sticketCreated2"
+                    [labels]="sChartLabels"
+                    [options]="sChartOptions"
+                    [colors]="sChartColors"
+                    [legend]="sChartLegend"
+                    [chartType]="sChartType"
+                    [plugins]="sChartPlugins">
+                  </canvas>
+                </div>
+              </div>
+        </div>
+    </div>
+
+    <div class="statbox col-sm-12 lineChartGraph">
+        <div class="row newGraph">
+            <div class="col-sm-3 statboxGraph">
+                <div class="row">
+                  <p class="graphDetailsGraph" style="font-size: 15px">Total Feedback:</p><p style="color: #FFD96A" class="graphDetailsGraph">{{totalfeedbackUsers}}</p>
+                </div>
+                <div *ngIf="sfeedback1">
+                    <canvas baseChart width="200" height="50"
+                    [datasets]="sfeedback1"
+                    [labels]="sChartLabels"
+                    [options]="sChartOptions"
+                    [colors]="sChartColors"
+                    [legend]="sChartLegend"
+                    [chartType]="sChartType"
+                    [plugins]="sChartPlugins">
+                  </canvas>
+                </div>
+              </div>
+
+              <div class="col-sm-3 statboxGraph statDetail">
+                  <div class="row">
+                    <p class="graphDetailsGraph" style="font-size: 15px">Total Unique Feedback:</p><p style="color: #FFD96A" class="graphDetailsGraph">{{uniquefeedbackUsers}}</p>
+                  </div>
+                  <div>
+                      <canvas *ngIf="sfeedback3" baseChart width="200" height="50"
+                      [datasets]="sfeedback3"
+                      [labels]="sChartLabels"
+                      [options]="sChartOptions"
+                      [colors]="sChartColors"
+                      [legend]="sChartLegend"
+                      [chartType]="sChartType"
+                      [plugins]="sChartPlugins">
+                    </canvas>
+                  </div>
+                </div>
+      
+              <div class="col-sm-3 statboxGraph statDetail">
+                  <div class="row">
+                    <p class="graphDetailsGraph" style="font-size: 15px">Today Feedback:</p><p style="color: #FFD96A" class="graphDetailsGraph">{{todayfeedbackUsers}}</p>
+                  </div>
+                <div *ngIf="sfeedback2">
+                    <canvas baseChart width="200" height="50"
+                    [datasets]="sfeedback2"
+                    [labels]="sChartLabels"
+                    [options]="sChartOptions"
+                    [colors]="sChartColors"
+                    [legend]="sChartLegend"
+                    [chartType]="sChartType"
+                    [plugins]="sChartPlugins">
+                  </canvas>
+                </div>
+              </div>
+        </div>
+  
+        <div class="row newGraph listGraph">
+            <div class="col-sm-3 statboxGraph">
+                <div class="row">
+                  <p class="graphDetailsGraph" style="font-size: 15px">Total Notification :</p><p style="color: #FFD96A" class="graphDetailsGraph">{{totalnotifUsers}}</p>
+                </div>
+                <div *ngIf="snotification1">
+                    <canvas baseChart width="200" height="50"
+                    [datasets]="snotification1"
+                    [labels]="sChartLabels"
+                    [options]="sChartOptions"
+                    [colors]="sChartColors"
+                    [legend]="sChartLegend"
+                    [chartType]="sChartType"
+                    [plugins]="sChartPlugins">
+                  </canvas>
+                </div>
+              </div>
+
+              <div class="col-sm-3 statboxGraph statDetail">
+                  <div class="row">
+                    <p class="graphDetailsGraph" style="font-size: 15px">Total Unique Notification :</p><p style="color: #FFD96A" class="graphDetailsGraph">{{uniquenotifUsers}}</p>
+                  </div>
+                  <div>
+                      <canvas *ngIf="snotification3" baseChart width="200" height="50"
+                      [datasets]="snotification3"
+                      [labels]="sChartLabels"
+                      [options]="sChartOptions"
+                      [colors]="sChartColors"
+                      [legend]="sChartLegend"
+                      [chartType]="sChartType"
+                      [plugins]="sChartPlugins">
+                    </canvas>
+                  </div>
+                </div>
+      
+              <div class="col-sm-3 statboxGraph statDetail">
+                  <div class="row">
+                    <p class="graphDetailsGraph" style="font-size: 15px">Today Notification :</p><p style="color: #FFD96A" class="graphDetailsGraph">{{todaynotifUsers}}</p>
+                  </div>
+                <div *ngIf="snotification2">
+                    <canvas baseChart width="200" height="50"
+                    [datasets]="snotification2"
+                    [labels]="sChartLabels"
+                    [options]="sChartOptions"
+                    [colors]="sChartColors"
+                    [legend]="sChartLegend"
+                    [chartType]="sChartType"
+                    [plugins]="sChartPlugins">
+                  </canvas>
+                </div>
+              </div>
+        </div>
+
+        <div class="row newGraph listGraph">
+            <div class="col-sm-3 statboxGraph">
+                <div class="row">
+                  <p class="graphDetailsGraph" style="font-size: 15px">Total HelpCenter :</p><p style="color: #FFD96A" class="graphDetailsGraph">{{totalhelpUsers}}</p>
+                </div>
+                <div *ngIf="shelpcenter1">
+                    <canvas baseChart width="200" height="50"
+                    [datasets]="shelpcenter1"
+                    [labels]="sChartLabels"
+                    [options]="sChartOptions"
+                    [colors]="sChartColors"
+                    [legend]="sChartLegend"
+                    [chartType]="sChartType"
+                    [plugins]="sChartPlugins">
+                  </canvas>
+                </div>
+              </div>
+
+              <div class="col-sm-3 statboxGraph statDetail">
+                  <div class="row">
+                    <p class="graphDetailsGraph" style="font-size: 15px">Total Unique HelpCenter :</p><p style="color: #FFD96A" class="graphDetailsGraph">{{uniquehelpUsers}}</p>
+                  </div>
+                  <div>
+                      <canvas *ngIf="shelpcenter3" baseChart width="200" height="50"
+                      [datasets]="shelpcenter3"
+                      [labels]="sChartLabels"
+                      [options]="sChartOptions"
+                      [colors]="sChartColors"
+                      [legend]="sChartLegend"
+                      [chartType]="sChartType"
+                      [plugins]="sChartPlugins">
+                    </canvas>
+                  </div>
+                </div>
+      
+              <div class="col-sm-3 statboxGraph statDetail">
+                  <div class="row">
+                    <p class="graphDetailsGraph" style="font-size: 15px">Today HelpCenter :</p><p style="color: #FFD96A" class="graphDetailsGraph">{{todayhelpUsers}}</p>
+                  </div>
+                <div *ngIf="shelpcenter2">
+                    <canvas baseChart width="200" height="50"
+                    [datasets]="shelpcenter2"
+                    [labels]="sChartLabels"
+                    [options]="sChartOptions"
+                    [colors]="sChartColors"
+                    [legend]="sChartLegend"
+                    [chartType]="sChartType"
+                    [plugins]="sChartPlugins">
+                  </canvas>
+                </div>
+              </div>
+        </div>
+    </div>
+
+    <div class="statbox col-sm-12 lineChartGraph">
+        <div class="row newGraph">
+            <div class="col-sm-3 statboxGraph">
+                <div class="row">
+                  <p class="graphDetailsGraph" style="font-size: 15px">Total Category Details:</p><p style="color: #FFD96A" class="graphDetailsGraph">{{totalcatdetailsUsers}}</p>
+                </div>
+                <div *ngIf="scategoryDetails1">
+                    <canvas baseChart width="200" height="50"
+                    [datasets]="scategoryDetails1"
+                    [labels]="sChartLabels"
+                    [options]="sChartOptions"
+                    [colors]="sChartColors"
+                    [legend]="sChartLegend"
+                    [chartType]="sChartType"
+                    [plugins]="sChartPlugins">
+                  </canvas>
+                </div>
+              </div>
+
+              <div class="col-sm-3 statboxGraph statDetail">
+                  <div class="row">
+                    <p class="graphDetailsGraph" style="font-size: 15px">Total Unique Category Details:</p><p style="color: #FFD96A" class="graphDetailsGraph">{{uniquecatdetailsUsers}}</p>
+                  </div>
+                  <div>
+                      <canvas *ngIf="scategoryDetails3" baseChart width="200" height="50"
+                      [datasets]="scategoryDetails3"
+                      [labels]="sChartLabels"
+                      [options]="sChartOptions"
+                      [colors]="sChartColors"
+                      [legend]="sChartLegend"
+                      [chartType]="sChartType"
+                      [plugins]="sChartPlugins">
+                    </canvas>
+                  </div>
+              </div>
+      
+              <div class="col-sm-3 statboxGraph statDetail">
+                  <div class="row">
+                    <p class="graphDetailsGraph" style="font-size: 15px">Today Category Details:</p><p style="color: #FFD96A" class="graphDetailsGraph">{{todaycatdetailsUsers}}</p>
+                  </div>
+                <div *ngIf="scategoryDetails2">
+                    <canvas baseChart width="200" height="50"
+                    [datasets]="scategoryDetails2"
+                    [labels]="sChartLabels"
+                    [options]="sChartOptions"
+                    [colors]="sChartColors"
+                    [legend]="sChartLegend"
+                    [chartType]="sChartType"
+                    [plugins]="sChartPlugins">
+                  </canvas>
+                </div>
+              </div>
+        </div>
+  
+        <div class="row newGraph listGraph">
+            <div class="col-sm-3 statboxGraph">
+                <div class="row">
+                  <p class="graphDetailsGraph" style="font-size: 15px">Total Article Feedback :</p><p style="color: #FFD96A" class="graphDetailsGraph">{{totalarticlefeedUsers}}</p>
+                </div>
+                <div *ngIf="sarticleFeedback1">
+                    <canvas baseChart width="200" height="50"
+                    [datasets]="sarticleFeedback1"
+                    [labels]="sChartLabels"
+                    [options]="sChartOptions"
+                    [colors]="sChartColors"
+                    [legend]="sChartLegend"
+                    [chartType]="sChartType"
+                    [plugins]="sChartPlugins">
+                  </canvas>
+                </div>
+              </div>
+
+              <div class="col-sm-3 statboxGraph statDetail">
+                  <div class="row">
+                    <p class="graphDetailsGraph" style="font-size: 15px">Total Unique Article Feedback :</p><p style="color: #FFD96A" class="graphDetailsGraph">{{uniquearticlefeedUsers}}</p>
+                  </div>
+                  <div>
+                      <canvas *ngIf="sarticleFeedback3" baseChart width="200" height="50"
+                      [datasets]="sarticleFeedback3"
+                      [labels]="sChartLabels"
+                      [options]="sChartOptions"
+                      [colors]="sChartColors"
+                      [legend]="sChartLegend"
+                      [chartType]="sChartType"
+                      [plugins]="sChartPlugins">
+                    </canvas>
+                  </div>
+                </div>
+      
+              <div class="col-sm-3 statboxGraph statDetail">
+                  <div class="row">
+                    <p class="graphDetailsGraph" style="font-size: 15px">Today Article Feedback :</p><p style="color: #FFD96A" class="graphDetailsGraph">{{todayarticlefeedUsers}}</p>
+                  </div>
+                <div *ngIf="sarticleFeedback2">
+                    <canvas baseChart width="200" height="50"
+                    [datasets]="sarticleFeedback2"
+                    [labels]="sChartLabels"
+                    [options]="sChartOptions"
+                    [colors]="sChartColors"
+                    [legend]="sChartLegend"
+                    [chartType]="sChartType"
+                    [plugins]="sChartPlugins">
+                  </canvas>
+                </div>
+              </div>
+        </div>
+
+        <div class="row newGraph listGraph">
+            <div class="col-sm-3 statboxGraph">
+                <div class="row">
+                  <p class="graphDetailsGraph" style="font-size: 15px">Total Logouts :</p><p style="color: #FFD96A" class="graphDetailsGraph">{{totallogoutUsers}}</p>
+                </div>
+                <div *ngIf="slogouts1">
+                    <canvas baseChart width="200" height="50"
+                    [datasets]="slogouts1"
+                    [labels]="sChartLabels"
+                    [options]="sChartOptions"
+                    [colors]="sChartColors"
+                    [legend]="sChartLegend"
+                    [chartType]="sChartType"
+                    [plugins]="sChartPlugins">
+                  </canvas>
+                </div>
+              </div>
+
+              <div class="col-sm-3 statboxGraph statDetail">
+                  <div class="row">
+                    <p class="graphDetailsGraph" style="font-size: 15px">Total Unique Logouts :</p><p style="color: #FFD96A" class="graphDetailsGraph">{{uniquelogoutUsers}}</p>
+                  </div>
+                  <div>
+                      <canvas *ngIf="slogouts3" baseChart width="200" height="50"
+                      [datasets]="slogouts3"
+                      [labels]="sChartLabels"
+                      [options]="sChartOptions"
+                      [colors]="sChartColors"
+                      [legend]="sChartLegend"
+                      [chartType]="sChartType"
+                      [plugins]="sChartPlugins">
+                    </canvas>
+                  </div>
+                </div>
+      
+              <div class="col-sm-3 statboxGraph statDetail">
+                  <div class="row">
+                    <p class="graphDetailsGraph" style="font-size: 15px">Today Logouts :</p><p style="color: #FFD96A" class="graphDetailsGraph">{{todaylogoutUsers}}</p>
+                  </div>
+                <div *ngIf="slogouts2">
+                    <canvas baseChart width="200" height="50"
+                    [datasets]="slogouts2"
+                    [labels]="sChartLabels"
+                    [options]="sChartOptions"
+                    [colors]="sChartColors"
+                    [legend]="sChartLegend"
+                    [chartType]="sChartType"
+                    [plugins]="sChartPlugins">
+                  </canvas>
+                </div>
+              </div>
+        </div>
+    </div>
+
+    
+  </div>
+     
+</div>

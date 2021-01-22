@@ -1,0 +1,137 @@
+<aside>
+	<app-navbar></app-navbar>
+</aside>
+
+
+<div class="col-xs-12" >
+	<div class="row">
+
+		<div class="col-sm-3" *ngIf="totalLoan" (click)="view_total_loan()">
+			<div class="statbox">
+				<img src="assets/images/application.svg" alt="">
+				<p>Total Loan Application</p>
+				<h4><span>{{totalLoan.data}}</span> <small>{{current_date | date: "dd MMM yyyy"}}</small></h4>
+			</div>
+		</div>
+
+		<div class="col-sm-3" *ngIf="alldiscrepancy" (click)="view_total_discrepancy()">
+			<div class="statbox">
+				<img src="assets/images/issues.svg" alt="">
+				<p>Total Discrepancy Raised</p>
+				<h4><span>{{alldiscrepancy.data}}</span> <small>{{current_date | date: "dd MMM yyyy"}}</small></h4>
+			</div>
+		</div>
+
+		<div class="col-sm-3">
+			<div class="statbox">
+				<img src="assets/images/dealer-active.svg" alt="">
+				<p>Total Dealer</p>
+				<h4><span>0</span> <small>{{current_date | date: "dd MMM yyyy"}}</small></h4>
+			</div>
+		</div>
+
+		<div class="col-sm-3" *ngIf="allUser" (click)="view_total_customer()">
+			<div class="statbox">
+				<img src="assets/images/customer-active.svg" alt="">
+				<p>Total Customer</p>
+				<h4><span>{{allUser.data}}</span> <small>{{current_date | date: "dd MMM yyyy"}}</small></h4>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+
+<div class="row mt20">
+	<div class="col-sm-6">
+		<h4 class="heading" ><span>Recent Transactions History</span></h4>
+		<table class="tabledark">
+			<tr>
+				<td>24 May 2019</td>
+				<td>Ravi Kumar</td>
+				<td><span class="color-yellow">INR 3205</span></td>
+			</tr>
+			<tr>
+				<td>24 May 2019</td>
+				<td>Rajendra parsad</td>
+				<td><span class="color-yellow">INR 3205</span></td>
+			</tr>
+			<tr>
+				<td>24 May 2019</td>
+				<td>Rohit Verma</td>
+				<td><span class="color-yellow">INR 3205</span></td>
+			</tr>
+			<tr>
+				<td>24 May 2019</td>
+				<td>Sunil Raastogi</td>
+				<td><span class="color-yellow">INR 3205</span></td>
+			</tr>
+			<tr>
+				<td>24 May 2019</td>
+				<td>Ravi Kumar</td>
+				<td><span class="color-yellow">INR 3205</span></td>
+			</tr>
+			<tr>
+				<td>24 May 2019</td>
+				<td>Rohit Verma</td>
+				<td><span class="color-yellow">INR 3205</span></td>
+			</tr>
+		</table>
+		<a routerLink="/transactions" class="btn-dark float-right">View All</a>
+	</div>
+	<div class="col-sm-6">
+		<div class="statbox">
+			<p>Recent Activites</p>
+			<hr>
+
+			<div class="activity">
+				<div class="imgcircle"  style="background-image: url(https://peopledotcom.files.wordpress.com/2019/04/keanu-reeves.jpg?w=2185&h=2700)">
+				</div>
+				<div>
+					<span>
+						<b>Sunil Kumar</b>
+						<small>29 may 2019</small>
+					</span>
+					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+				</div>
+			</div>
+			
+			<div class="activity">
+				<div class="imgcircle"  style="background-image: url(https://peopledotcom.files.wordpress.com/2019/04/keanu-reeves.jpg?w=2185&h=2700)">
+				</div>
+				<div>
+					<span>
+						<b>Sunil Kumar</b>
+						<small>29 may 2019</small>
+					</span>
+					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+				</div>
+			</div>
+			
+			<div class="activity">
+				<div class="imgcircle"  style="background-image: url(https://peopledotcom.files.wordpress.com/2019/04/keanu-reeves.jpg?w=2185&h=2700)">
+				</div>
+				<div>
+					<span>
+						<b>Sunil Kumar</b>
+						<small>29 may 2019</small>
+					</span>
+					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+				</div>
+			</div>
+			
+			<div class="activity">
+				<div class="imgcircle"  style="background-image: url(https://peopledotcom.files.wordpress.com/2019/04/keanu-reeves.jpg?w=2185&h=2700)">
+				</div>
+				<div>
+					<span>
+						<b>Sunil Kumar</b>
+						<small>29 may 2019</small>
+					</span>
+					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</div>

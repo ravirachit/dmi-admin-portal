@@ -1,0 +1,38 @@
+.addblogimg {
+    height: 191px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .blogaddImg input {
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+  }
+  .blogStatus{
+    width: 100%;
+    background: #000;
+    color: #fff;
+    padding: 10px 10px;
+    border-radius: 4px;
+    font-weight: 300;
+    border: 0;
+    border-bottom: 1px solid #000;
+    transition: all 200ms linear;
+  }
+
+.textarea_sty{
+  width: 100%;
+  background: #000;
+  color: #fff;
+  padding: 10px 10px;
+  border-radius: 4px;
+  font-weight: 300;
+  border: 0;
+  border-bottom: 1px solid #000;
+  transition: all 200ms linear;
+}
+  

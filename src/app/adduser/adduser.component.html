@@ -1,0 +1,59 @@
+<aside>
+	<app-navbar></app-navbar>
+</aside>
+<h4 class="heading"><span>Add User</span> </h4>
+
+<div class="row">
+    <div class="col-sm-4">
+        <p><em>Note:  All Fields are mandatory </em></p>
+
+        <div class="userpic">
+            <label class="imagepreview" for="imageupload">
+                <img id="preview" src="assets/images/camera.svg" alt="your image"  />
+                <input type="file" onchange="document.getElementById('preview').src = window.URL.createObjectURL(this.files[0])" id="imageupload">
+            </label> Upload Photograph
+        </div>
+        <div ngbDropdown class="usertype">
+            <button id="dropdownBasic1" ngbDropdownToggle> 
+                <img src="assets/images/add.svg" /> {{UserType}}
+            </button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <button ngbDropdownItem (click)="admin()">Admin</button>
+                <button ngbDropdownItem (click)="employee()">Employee</button>
+                <button ngbDropdownItem (click)="vendor()">Vendor</button>
+                <button ngbDropdownItem (click)="customer()">Customer</button>
+            </div>
+        </div>
+
+        <p>Selet Gender</p>
+        <div class="radiobutton">
+            <input type="radio" name="gender" id="" checked>
+            <div></div>
+            Male
+        </div>
+        <div class="radiobutton">
+            <input type="radio" name="gender" id="">
+            <div></div>
+            Female
+        </div>
+        <div class="radiobutton">
+            <input type="radio" name="gender" id="">
+            <div></div>
+            Others
+        </div>
+
+    </div>
+    <div class="col-sm-7">
+        <label>Full Name</label>
+        <input type="text" placeholder="John Doe" class="input" required>
+        <label>Email Address</label>
+        <input type="email" placeholder="Email@domain.com" class="input" required>
+        <label>Contact Number</label>
+        <input type="tel" placeholder="123456790" class="input" required>
+        <label>Password</label>
+        <input type="password" placeholder="********" class="input" required>
+        <label>Repeat Password</label>
+        <input type="password" placeholder="********" class="input" required>
+        <button type="submit" class="btn btn-dark">Add User</button>
+    </div>
+</div>

@@ -1,0 +1,118 @@
+a{
+    color: #fff;
+    &:hover{
+        color: #ffd96a;
+        text-decoration: none;
+    }
+}
+
+h5{
+    margin-top: 30px;
+    color: #ffc107;
+    font-weight: 900;
+    font-size: 28px;
+    display: flex;
+    justify-content: space-between;
+    small{
+        display: block;
+        font-size: 13px;
+        color: #fff;
+        font-weight: 400;
+    }
+}
+
+.historyText{
+    display: block;
+    font-size: 24px;
+    color: #ffc107;
+    font-weight: 500;
+    margin-top: -5px;
+    margin-left: 14px;
+    opacity : 0.9 !important;
+}
+
+
+.statbox {
+    height: 100%;
+}
+
+.btn-position{
+    margin-right: 10px;
+}
+
+.btn-position-dis{
+    margin-right: 10px;
+    color: gray !important;
+    cursor: not-allowed !important;
+}
+
+.historyBox{
+    margin-top: 1%;
+}
+
+.histdetails{
+    display: flex;
+    justify-content: space-between;
+    p{
+        color: #fff;
+        font-size: 15px;
+        font-weight: 500;
+        opacity : 0.9 !important;
+    }
+}
+
+.reminder{
+    margin-top: 1%;
+}
+
+.tabledark .drop .dropdown-menu{
+    padding: 7px !important;
+    height: 35px !important;
+    text-align: center !important;
+}
+
+
+.userDetailstatbox {
+    border-radius: 4px;
+    padding-top: 10px;
+    display: flex;
+    p {
+        font-weight: 300;
+        margin-top: 6px;
+        margin-bottom: 6px;
+        display: flex;
+        font-weight: 400;
+        margin-bottom: 0;
+        b {
+            display: block;
+            min-width: 140px;
+            font-weight: 400;
+        }
+    }
+    .col-sm-5 {
+        display: flex;
+        border-right: 1px solid rgba(255, 255, 255, .1);
+        img {
+            margin-right: 20px;
+            margin-top: 5px;
+        }
+    }
+    h4 {
+        margin-bottom: 0;
+        font-size: 18px;
+        padding-top: 10px;
+        span {
+            color: #FFD96A;
+            font-weight: 900;
+            display: block;
+        }
+        small {
+            font-size: 12px;
+            display: block;
+            font-weight: 400
+        }
+    }
+    a {
+        color: #FFD96A;
+    }
+}

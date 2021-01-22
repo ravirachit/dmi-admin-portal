@@ -1,0 +1,10 @@
+<aside>
+	<app-navbar></app-navbar>
+</aside>
+<h4 class="heading"><span>Add Category</span> </h4>
+<div class="row">
+    <div class="col-sm-6">
+        <label>Category Name</label>
+        <input type="text" [(ngModel)]="categoryName" class="input"><br><br>
+        
+<button type="button" class="btn-dark " (click)="addCategory()">Save</button>

@@ -1,0 +1,40 @@
+<aside>
+    <app-navbar></app-navbar>
+</aside>
+
+<div class="col-xs-12">
+    <div class="statbox historyBox">
+        <p class="historyText">History</p>
+        <div class="row row-eq-height">
+            <div class="col-sm-12">
+                <div class="statbox">
+                    <div *ngFor="let historyList of logsList">
+                        <div class="histdetails" *ngIf="historyList.status == 3">
+                            <p class="col-sm-6">Create Payment Link</p> <p class="col-sm-6" style="text-align: center">{{historyList.add_date | date: 'MMM d, y | h:mm:ss a'}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12">
+                <div class="statbox">
+                    <div *ngFor="let historyList of logsList">
+                        <div class="histdetails" *ngIf="historyList.status == 1">
+                            <p class="col-sm-6">Send SMS</p> <p class="col-sm-6" style="text-align: center">{{historyList.add_date | date: 'MMM d, y | h:mm:ss a'}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-12">
+                <div class="statbox reminder">
+                    <div *ngFor="let historyList of logsList">
+                        <div class="histdetails" *ngIf="historyList.status == 2">
+                            <p class="col-sm-6">Reminder SMS</p> <p class="col-sm-6" style="text-align: center">{{historyList.add_date | date: 'MMM d, y | h:mm:ss a'}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,148 @@
+.date{
+  margin-left: 3%;
+  margin-right: 3%;
+  font-weight: 600;
+  font-size: 15px;
+}
+.searchbtn{
+  margin-left: 7%;
+  margin-top: 3px;
+}
+.btn{
+  padding: 7%;
+  border: 1px solid #FFD96A;
+  color: #FFD96A !important;
+  height: 34px;
+  line-height: 5px;
+  font-size: 15.5px;
+  &:hover{
+    border: 1px solid #FFD96A !important;
+    border-color: #FFD96A !important;
+  }
+}
+.pieChart{
+  margin-top: 4%;
+}
+.lineChart{
+  margin-top: 4%;
+  height: 450px;
+}
+.lineChartView{
+  height: 430px !important;
+}
+.selectionHead{
+  margin-left: 5%;
+}
+.labelHead{
+  font-size: 17px !important;
+}
+.lineHead{
+  margin-left: 12px;
+}
+.statbox{
+  p{
+    opacity:2 !important;
+  }
+}
+.headerP{
+  color: #fff;
+  margin-left: 12px;
+  font-weight: 600 !important;
+}
+.section{
+  margin-top: 12px;
+}
+.input{
+  background: none;
+  border: 1px solid #FFD96A;
+  margin-bottom: 4%;
+  color: white;
+  font-weight: 400;
+  font-size: 15.5px;
+  width:22% !important;
+  height: 35px !important;
+}
+.selectionHeadDate{
+  margin-left: 115px;
+  margin-top: -35px;
+}
+.statboxGraph{
+  background: #333333;
+  margin-left: 10px;
+  height: 150px !important;
+}
+.graphDetails{
+  font-weight: 510;
+  font-size: 16px;
+}
+.statDetail{
+  margin-left: 52px;
+}
+.detailSection{
+  margin-top: 5%;
+}
+.dropdown-menu{
+  width: 135px !important;
+  height: 98px !important;
+  background: #393737;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, .4);
+  color: #fff;
+  font-size: 15px;  
+  padding: 5px 0px 0px 0px;
+  text-align: center;
+}
+.dropdown-item {
+  height: 30px;
+  font-size: 15.5px;
+  &:hover{
+    background-color: #FFD96A;
+    color: #000;
+    cursor: pointer;
+  }
+}
+.selectDate{
+  width: 32px;
+}
+.exportCSV{
+  text-align: right;
+  font-size: 20px;
+  margin-right: 40px;
+  margin-left: 88px;
+}
+.downloadCSV{
+  font-size: 20px;
+  line-height: 3;
+}
+.boxStyle{
+  margin-left: 15px;
+}
+.table{
+  color: #fff !important;
+  overflow: scroll;
+  max-width: 100%;
+  display: block;
+  overflow-y: hidden;
+  th{
+    color: #FFD96A !important;
+    font-size: 16px !important;
+    white-space: nowrap;
+  }
+  td{
+    white-space: nowrap;
+  }
+}
+.pagination{
+  display: flex;
+  justify-content: flex-end;
+}
+.graph{
+  margin-top: 25px;
+}
+.tableCol{
+  width: 150px;
+}
+.custmPage{
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}

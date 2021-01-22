@@ -1,0 +1,47 @@
+<aside>
+	<app-navbar></app-navbar>
+</aside>
+<h4 class="heading"><span>Add New Blog</span> </h4>
+<div class="row">
+    <div class="col-sm-6">
+        <label>Blog Title</label>
+        <input type="text" [(ngModel)]="BlogTitle" class="input" placeholder="Blog Title"><br><br>
+        <label>Blog Name</label>
+        <input type="text" [(ngModel)]="metaName" class="input" placeholder="Meta Name"><br><br>
+        <label>Blog Categories</label>
+        <select [(ngModel)]="selectedCategory" class="blogStatus" *ngIf="activeCategory">
+          <option *ngFor="let category of activeCategory.data" [value]="category.id">{{category.category_name}}</option>
+        </select><br><br>
+        <label>Status</label>
+          <select [(ngModel)]="selectedStatus" (change)="changeStatus($event.target.value)" class="blogStatus">
+            <option value="1">Active</option>
+            <option value="0">In-active</option>
+          </select><br><br>
+          <label>Sort Description</label>
+          <textarea rows="4" cols="50" maxlength="250" class="textarea_sty" [(ngModel)]="sortDesc"></textarea>
+    </div>
+
+    <div class="col-sm-6">
+            <label>Meta Title</label>
+            <input type="text" [(ngModel)]="metaTitle" class="input" placeholder="Meta Title"><br><br>
+            <label>Meta Description</label>
+            <input type="text" [(ngModel)]="metaDescription" class="input" placeholder="Meta Description"><br><br>
+            <label>Tag</label>
+        <input type="text" [(ngModel)]="tag" class="input"><br><br>
+        <div class="image-upload blogaddImg">
+            <label for="imageUpload">
+                <img [src]="domSanatize.bypassSecurityTrustUrl(imageData)" alt="" *ngIf="!profilePicSet" class="addblogimg">
+                <img [src]="domSanatize.bypassSecurityTrustUrl(imageData)" alt="" *ngIf="profilePicSet"
+                    class="addblogimg">
+            </label><br>
+            <input #profilePicture type="file" id="imageUpload" (change)="getProfilePic($event)"
+                accept="image/png, image/jpeg, image/jpg" />
+            <span>Upload Blog Image</span>
+        </div>
+    </div>
+</div>
+
+<p></p><br>
+<label>Description</label>
+<angular-editor [placeholder]="'Enter text here...'" [(ngModel)]="htmlContent" [config]="config"></angular-editor><br><br>
+<button type="button" class="btn-dark " (click)="updateBlog()">Update</button>

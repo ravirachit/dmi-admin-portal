@@ -1,0 +1,45 @@
+
+.login{
+    height: 100vh;
+    overflow: hidden;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 9;
+    img{
+        margin: auto auto 40px auto;
+        display: block
+    }
+    h2{
+        font-size: 16px;
+        font-weight: 300;
+        letter-spacing: 1px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    form{
+        margin: auto;
+        max-width: 420px;
+        width: 100%;
+        background: #242424;
+        padding: 30px 20px;
+        box-shadow: 0 0 20px rgba(0,0,0,.2);
+        label{
+            font-weight: 300;
+            margin-top: 15px;
+        }
+        button{
+            margin-top: 20px;
+        }
+    }
+}
+
+app-header, header{
+    display: none !important
+}

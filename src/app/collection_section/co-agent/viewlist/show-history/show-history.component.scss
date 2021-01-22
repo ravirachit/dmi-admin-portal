@@ -1,0 +1,22 @@
+.historyBox{
+    margin-top: 1%;
+}
+.historyText{
+    display: block;
+    font-size: 24px;
+    color: #ffc107;
+    font-weight: 500;
+    margin-top: -5px;
+    margin-left: 14px;
+    opacity : 0.9 !important;
+}
+.histdetails{
+    display: flex;
+    justify-content: space-between;
+    p{
+        color: #fff;
+        font-size: 15px;
+        font-weight: 500;
+        opacity : 0.9 !important;
+    }
+}

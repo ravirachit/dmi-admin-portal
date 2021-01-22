@@ -1,0 +1,18 @@
+<aside>
+	<app-navbar></app-navbar>
+</aside>
+<div class="login">
+
+  <form [formGroup]="form">
+    <img src="assets/images/logo.png" alt="DMI FINANCE">
+    <h2>WELCOME TO DMI FINANCE</h2>
+    <label>Mobile</label>
+    <input type="email" class="input" formControlName="userName" required>
+    <span *ngIf="isFieldInvalid('userName')" class="error">Please Enter a valid Email Address</span>
+    <label>Password</label>
+    <input type="password" class="input" formControlName="password" required>
+    <span *ngIf="isFieldInvalid('userName')" class="error">Please Enter your password</span>
+    <button type="submit" class="btn yellow" (click)="onSubmit()">Login</button>
+  </form>
+  
+  </div>

@@ -1,0 +1,112 @@
+<aside>
+	<app-navbar></app-navbar>
+</aside>
+
+<div class="col-xs-12" >
+	<div class="row">
+
+		<div class="col-sm-3" >
+			<div class="statbox">
+				<img src="assets/images/application.svg" alt="">
+				<p>Total Collection List</p>
+				<h4><span>{{headerDetails.total_list}}</span> <small></small></h4>
+			</div>
+		</div>
+
+		<div class="col-sm-3">
+			<div class="statbox">
+				<img src="assets/images/transcation-yellw.svg" alt="">
+				<p>Total Borrowers</p>
+				<h4><span>{{headerDetails.total_borrower}}</span><small></small></h4>
+			</div>
+		</div>
+
+		<div class="col-sm-3">
+			<div class="statbox">
+				<img src="assets/images/dealer-active.svg" alt="">
+				<p>Total Received Payments</p>
+				<h4><span>{{headerDetails.Total_recieve_payment}}</span> <small></small></h4>
+			</div>
+		</div>
+
+		<div class="col-sm-3">
+			<div class="statbox">
+				<img src="assets/images/customer-active.svg" alt="">
+				<p>Total Due Payments</p>
+				<h4><span>{{headerDetails.total_due_payment}}</span> <small></small></h4>
+			</div>
+		</div>
+
+	</div>
+</div>
+
+
+<div class="row mt20">
+	<div class="col-sm-6">
+		<h4 class="heading" ><span>Recent Transactions History</span></h4>
+		<table class="tabledark">
+			<tr *ngFor="let data of detailData">
+				<td>{{data.duedate}}</td>
+				<td>{{data.name}}</td>
+				<td>{{data.phone}}</td>
+				<td><span class="color-yellow">₹ {{data.amount}}</span></td>
+			</tr>
+		</table>
+		<!-- <a routerLink="/transactions" class="btn-dark float-right">View All</a> -->
+	</div>
+	<!-- <div class="col-sm-6">
+		<div class="statbox">
+			<p>Recent Activites</p>
+			<hr>
+
+			<div class="activity">
+				<div class="imgcircle"  style="background-image: url(https://peopledotcom.files.wordpress.com/2019/04/keanu-reeves.jpg?w=2185&h=2700)">
+				</div>
+				<div>
+					<span>
+						<b>Sunil Kumar</b>
+						<small>29 may 2019</small>
+					</span>
+					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+				</div>
+			</div>
+			
+			<div class="activity">
+				<div class="imgcircle"  style="background-image: url(https://peopledotcom.files.wordpress.com/2019/04/keanu-reeves.jpg?w=2185&h=2700)">
+				</div>
+				<div>
+					<span>
+						<b>Sunil Kumar</b>
+						<small>29 may 2019</small>
+					</span>
+					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+				</div>
+			</div>
+			
+			<div class="activity">
+				<div class="imgcircle"  style="background-image: url(https://peopledotcom.files.wordpress.com/2019/04/keanu-reeves.jpg?w=2185&h=2700)">
+				</div>
+				<div>
+					<span>
+						<b>Sunil Kumar</b>
+						<small>29 may 2019</small>
+					</span>
+					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+				</div>
+			</div>
+			
+			<div class="activity">
+				<div class="imgcircle"  style="background-image: url(https://peopledotcom.files.wordpress.com/2019/04/keanu-reeves.jpg?w=2185&h=2700)">
+				</div>
+				<div>
+					<span>
+						<b>Sunil Kumar</b>
+						<small>29 may 2019</small>
+					</span>
+					<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+				</div>
+			</div>
+			
+		</div>
+	</div> -->
+</div>

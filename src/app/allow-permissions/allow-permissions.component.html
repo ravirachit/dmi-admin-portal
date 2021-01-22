@@ -1,0 +1,76 @@
+<aside>
+	<app-navbar></app-navbar>
+</aside>
+
+<h4 class="heading">
+  <span>Create Role Permission</span>
+</h4>
+
+<div class="col-sm-12">
+  <div class="statbox">
+    <div class="select_role_input row">
+      <div class="col-sm-8 row">
+          <div class="col-sm-6">
+            <label class="labelHead">Please Enter Role Name : </label>
+          </div>
+          <div class="col-sm-4">
+            <input type="text" placeholder="Enter Role Name" class="input">
+          </div>
+      </div>
+      <div class="col-sm-4">
+          <button type="submit" class="btn btn-dark" (click)=addUsertoList()>Create Role</button>
+      </div>
+    </div>
+
+    <div class="select_role">
+      <div class="perm_heading"><input class="checkType" type="checkbox" (change)="dashboardClicked($event)"><p class="menu_perm">Dashboard</p></div>
+      <div *ngIf="showDashDetail==true" class="statbox">
+        <input class="select_role_perm" type="checkbox"> View
+        <input class="select_role_perm" type="checkbox"> Download Report
+        <input class="select_role_perm" type="checkbox"> View Details
+      </div>
+
+      <div class="perm_heading"><input class="checkType" type="checkbox" (change)="blogsClicked($event)"><p class="menu_perm">Blogs</p></div>
+      <div *ngIf="showBlogDetail==true" class="statbox">
+        <input class="select_role_perm" type="checkbox"> All
+        <input class="select_role_perm" type="checkbox"> Create Blogs
+        <input class="select_role_perm" type="checkbox"> View Blogs
+        <input class="select_role_perm" type="checkbox"> Edit Blogs
+        <input class="select_role_perm" type="checkbox"> Delete Blogs
+      </div>
+
+      <div class="perm_heading"><input class="checkType" type="checkbox" (change)="notifClicked($event)"><p class="menu_perm">Notification & Alerts</p></div>
+      <div *ngIf="showNotifDetail==true" class="statbox">
+        <input class="select_role_perm" type="checkbox"> Create
+        <input class="select_role_perm" type="checkbox"> Edit
+        <input class="select_role_perm" type="checkbox"> View
+        <input class="select_role_perm" type="checkbox"> Delete
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-sm-12 preRoles">
+  <div class="statbox">
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="tableCol" scope="col">S.No.</th>
+          <th class="tableCol" scope="col">Role Name</th>
+          <th class="tableCol" scope="col">Created On</th>
+          <th class="tableCol" scope="col">Total Users</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+

@@ -1,0 +1,101 @@
+//   faq collapsible style
+.panel-title {
+    margin-left: -15px;
+    margin-right: -15px;
+    a {
+        text-decoration: none !important;
+        display: block;
+        padding: 18px 44px 18px 15px;
+        position: relative;
+        color: white;
+    }
+}
+
+
+.panel-title a:after {
+    content: "-";
+    position: absolute;
+    right: 12px;
+    color: white;
+    border: 1px solid;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    top: 12px;
+    font-size: 20px;
+}
+.panel-title a.collapsed:after {
+    content: "+";
+    position: absolute;
+    right: 12px;
+    color: white;
+    border: 1px solid;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    top: 12px;
+    font-size: 20px;
+}
+.panel-body {
+    padding: 7px 0px 13px 0px;
+    font-size: 13px;
+}
+
+.panel {
+    border-bottom: 1px solid lightgray;
+    margin-bottom: 18px;
+}
+
+.panel-heading h4 {
+    font-size: 15px !important;
+    margin-bottom: -5px;
+}
+.container{
+    margin-left: -12px;
+}
+// end
+
+
+
+    .drop {
+        float: right;
+        margin-top: -13px;
+        margin-right: -6px;
+        button {
+            background: none;
+            border: none;
+            color: #fff;
+            font-weight: 300;
+            img {
+                height: 14px;
+                margin-left: -105px;
+                margin-top: -48px;
+            }
+            &:after {
+                display: none;
+            }
+            &:focus {
+                outline: none;
+            }
+        }
+        .dropdown-menu {
+            min-width: 6rem;
+            background: #393737;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, .4);
+            color: #fff;
+            padding: 0;
+            a {
+                color: #fff;
+                padding: 8px 12px;
+                font-size: 14px;
+                display: block;
+                &:hover {
+                    background: #FFD96A;
+                    color: #393737;
+                    text-decoration: none;
+                }
+            }
+        }
+    }

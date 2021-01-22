@@ -1,0 +1,25 @@
+<aside>
+	<app-navbar></app-navbar>
+</aside>
+<h4 class="heading"><span>Create List</span> </h4>
+<br>
+<div class="row">
+    <div class="col-sm-4">
+
+        <div class="userpic">
+            <label class="imagepreview" for="imageupload">
+                <img id="preview" src="assets/images/list-active.svg" width="26" />
+                <input type="file" id="imageupload" (change)="selectFile($event)" accept=".csv">
+            </label> {{fileName}} &nbsp;  <small><em> (CSV Format)</em></small>
+        </div>
+
+    </div>
+    <div class="col-sm-7">
+        <label>Name</label>
+        <input type="text" placeholder="Please Enter File Name"  class="input" required maxlength="100" [(ngModel)]="name">
+        <label>Description</label>
+        <textarea placeholder="Please Enter Description Here" name="" id="" class="input" rows="4" maxlength="300" [(ngModel)]="description"></textarea>
+        <button type="submit" class="btn btn-dark" (click)="sendFile()">Create List</button>
+        <button (click)="downloadCSV()" class="btn btn-dark" style="margin-left: 15px;">Download Sample CSV</button>
+    </div>
+</div>

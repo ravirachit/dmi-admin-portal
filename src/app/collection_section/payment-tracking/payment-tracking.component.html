@@ -1,0 +1,40 @@
+
+<aside>
+	<app-navbar></app-navbar>
+</aside>
+
+<h4 class="heading"><span>Payment Summary</span></h4>
+<div class="loan_loader" *ngIf="showLoader" align="center"><img src="assets/loading.gif" height="45"></div>
+<div class="col-sm-12 lineChart">
+    <div class="statbox">
+      <div class="col-sm-12 row">
+        <table class="table">
+          <thead>
+            <tr>
+              <th  scope="col">S.No.</th>
+              <th scope="col" sortable="name">Loan Name</th>
+              <th scope="col" sortable="mobile">Amount</th>
+              <th scope="col" sortable="mobile">Payment Link</th>
+              <th scope="col" sortable="amount">Mobile</th>
+              <th scope="col" sortable="amount">Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of responseSummary; index as i">
+              <td scope="row">{{i+1}}.</td>
+              <td>{{data.loan_id}}</td>
+              <td>{{data.amount}}</td>
+              <td>{{data.payment_link}}</td>
+              <td>{{data.sms_phone}}</td>
+              <td>{{data.created_at}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+</div>
+
+<div class="d-flex justify-content-between p-2">
+    <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="collectionSize" (pageChange)="loadPage($event)">
+    </ngb-pagination>
+</div>

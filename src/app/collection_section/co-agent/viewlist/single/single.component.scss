@@ -1,0 +1,155 @@
+@mixin shadow {
+    box-shadow: 0 0 20px rgba(0, 0, 0, .2);
+}
+
+.statbox {
+    background: #242424;
+    @include shadow;
+    border-radius: 4px;
+    padding: 15px;
+    display: flex;
+    p {
+        font-weight: 300;
+        margin-top: 6px;
+        margin-bottom: 6px;
+        display: flex;
+        font-weight: 400;
+        margin-bottom: 0;
+        b {
+            display: block;
+            min-width: 140px;
+            font-weight: 400;
+        }
+    }
+    .col-sm-5 {
+        display: flex;
+        border-right: 1px solid rgba(255, 255, 255, .1);
+        img {
+            margin-right: 20px;
+            margin-top: 3px;
+        }
+    }
+    h4 {
+        margin-bottom: 0;
+        font-size: 18px;
+        padding-top: 10px;
+        span {
+            color: #FFD96A;
+            font-weight: 900;
+            display: block;
+        }
+        small {
+            font-size: 12px;
+            display: block;
+            font-weight: 400
+        }
+    }
+    a {
+        color: #FFD96A;
+    }
+}
+
+.activity {
+    display: flex;
+    border-bottom: 1px solid rgba(255, 255, 255, .1);
+    margin-bottom: 12px;
+    div {
+        width: 100%;
+    }
+    span {
+        display: flex;
+        justify-content: space-between;
+        margin: 0;
+        width: 100%;
+        small {
+            margin: 0;
+        }
+    }
+    p {
+        font-size: 13px;
+    }
+}
+
+
+
+.userDetailstatbox {
+    border-radius: 4px;
+    // padding: 15px;
+    padding-top: 10px;
+    display: flex;
+    p {
+        font-weight: 300;
+        margin-top: 6px;
+        margin-bottom: 6px;
+        display: flex;
+        font-weight: 400;
+        margin-bottom: 0;
+        b {
+            display: block;
+            min-width: 140px;
+            font-weight: 400;
+        }
+    }
+    .col-sm-5 {
+        display: flex;
+        border-right: 1px solid rgba(255, 255, 255, .1);
+        img {
+            margin-right: 20px;
+            margin-top: 5px;
+        }
+    }
+    h4 {
+        margin-bottom: 0;
+        font-size: 18px;
+        padding-top: 10px;
+        span {
+            color: #FFD96A;
+            font-weight: 900;
+            display: block;
+        }
+        small {
+            font-size: 12px;
+            display: block;
+            font-weight: 400
+        }
+    }
+    a {
+        color: #FFD96A;
+    }
+}
+
+.name{
+    text-align: center;
+}
+
+.detailRow{
+    margin-left: 1%;
+}
+
+.det_values{
+    margin-left: 30%;
+    line-height: 30px;
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.headingColor{
+    color: #FFD96A;
+}
+
+.headingValues{
+    color: #FFD96A;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 30px;
+}
+
+.colons{
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 30px;
+}
+
+.userDetail{
+    font-size: 15px;
+}

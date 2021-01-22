@@ -1,0 +1,264 @@
+<aside>
+	<app-navbar></app-navbar>
+</aside>
+<h4 class="heading"><span>{{listName}}</span></h4>
+
+<div class="col-xs-12">
+    <div class="row row-eq-height">
+        <div class="col-sm-6">
+            <div class="statbox">
+                <h5 style="margin-top: 0"><small>Borrower</small></h5>
+                <h5>
+                    <div>
+                        <small>Total </small>
+                        {{totalUsers}}
+                        <a *ngIf="totalUsers>0" href="javascript:void(0)" (click)="download(1)"><small style="color: #ffd96a">Download List </small></a>
+                    </div>
+                    <div>
+                        <small>Paid</small>
+                        {{totalPaidUsers}}
+                        <a *ngIf="totalUsers>0" href="javascript:void(0)" (click)="download(2)"><small style="color: #ffd96a">Download List </small></a>
+                    </div>
+                    <div>
+                        <small>Unpaid</small>
+                        {{totalUnPaidUsers}}
+                        <a *ngIf="totalUsers>0" href="javascript:void(0)" (click)="download(3)"><small style="color: #ffd96a">Download List </small></a>
+                    </div>
+                </h5>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="statbox ">
+            <h5 style="margin-top: 0"><small>Amount</small></h5>
+                <h5>
+                    <div>
+                        <small>Total </small>
+                        ₹ {{totalAmount}}
+                    </div>
+                    <div>
+                        <small>Paid</small>
+                        ₹ {{totalPaid}}
+                    </div>
+                    <div>
+                        <small>Unpaid</small>
+                        ₹ {{totalUnPaidAmount}}
+                    </div>
+                </h5>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-xs-12">
+    <div class="statbox historyBox">
+        <p class="historyText">Recent Activities</p>
+        <div class="row row-eq-height">
+            <div class="col-sm-3">
+                <div class="histdetails">
+                    <p>Create Payment Link</p>
+                </div>
+                <div class="histdetails">
+                    <p>{{addDataPayment | date: 'MMM d, y | h:mm:ss a'}}</p>
+                </div>
+            </div>
+
+            <div class="col-sm-3">
+                <div class="histdetails">
+                    <p>Send SMS</p>
+                </div>
+                <div class="histdetails">
+                    <p>{{addDataSend | date: 'MMM d, y | h:mm:ss a'}}</p>
+                </div>
+            </div>
+
+            <div class="col-sm-3">
+                <div class="histdetails">
+                    <p>Reminder SMS</p>
+                </div>
+                <div class="histdetails">
+                    <p>{{addDataReminder | date: 'MMM d, y | h:mm:ss a'}}</p>
+                </div>
+            </div>
+
+            <div class="col-sm-3">
+                <button class="btn btn-dark" [disabled]="totalUsers<0" [routerLink]='["/show-history"]'>View All</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-xs-12 text-right" style="margin-top: 35px;margin-bottom: -100px" *ngIf="tabId == 2">
+    <button class="btn btn-dark btn-position" (click)="createURI()">Create Payment Link</button>
+    <button *ngIf="showSMS==false" class="btn btn-dark btn-position-dis">Send SMS</button>
+    <button *ngIf="showSMS" class="btn btn-dark btn-position" (click)="sendSMS()">Send SMS</button>
+    <button *ngIf="showReminder" class="btn btn-dark btn-position" (click)="remainderSMS()">Reminder SMS</button>
+    <button class="btn btn-dark" [routerLink]='["/addnew-user"]'>Add New User</button>
+</div>
+
+<!-- Paid Users -->
+
+<ngb-tabset (tabChange)="getTabChange($event)" *ngIf="totalUsers>0">    
+    <ngb-tab title="Paid" id="1">
+        <ng-template ngbTabContent>
+            <form class="searchform">
+                    <button><img src="assets/images/search.svg"></button>
+                    <input placeholder="Type here to search Users ……." type="text" name="searchTerm" [(ngModel)]="filterName" />
+                    <span class="ml-3" *ngIf="loadData$==0">Loading...</span>
+                </form>
+                
+            <table *ngIf="datapresentPaid == true" class="tabledark">
+                <thead>
+                    <tr>
+                        <th scope="col" sortable="name" (sort)="onSort($event)">Name</th>
+                        <th scope="col" sortable="mobile" (sort)="onSort($event)">Mobile</th>
+                        <th scope="col" sortable="amount" (sort)="onSort($event)">Loan Name</th>
+                        <th scope="col" sortable="pending" >Amount</th>
+                        <th scope="col">Mode of Payment</th>
+                        <th scope="col">Payment Date</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let country of viewPaid | filter:filterName">
+                        <td>
+                            <ngb-highlight [result]="country.name" [term]="service.searchTerm"></ngb-highlight>
+                        </td>
+                        <td>
+                            <ngb-highlight [result]="country.phone " [term]="service.searchTerm"></ngb-highlight>
+                        </td>
+                        <td>
+                            <ngb-highlight [result]="country.loan_id" [term]="service.searchTerm"></ngb-highlight>
+                        </td>
+                        <td>
+                            <ngb-highlight [result]="country.amount" [term]="service.searchTerm"></ngb-highlight>
+                        </td>
+                        <td>
+                            <ngb-highlight [result]="" [term]="service.searchTerm"></ngb-highlight><br>
+                        </td>
+                        <td>
+                            <ngb-highlight [result]="" [term]="service.searchTerm"></ngb-highlight><br>
+                        </td>
+                        <td>
+                            <div>
+                                <!-- <img src='assets/images/menu-icon.svg' alt=""> -->
+                                <div ngbDropdown class="drop">
+                                    <button id="dropdownBasic1" ngbDropdownToggle><img src='assets/images/menu-icon.svg' alt=""> 
+                                        <img src='assets/images/menu-color.svg' class="menucolor"></button>
+                                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                                        <a [routerLink]="['/single']" (click)="showDetails(country.id,country.phone)" ngbDropdownItem>View</a>
+                                        <!-- <a href="#" ngbDropdownItem>Edit</a>
+                                        <a href="#" ngbDropdownItem>Delete</a> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p style="text-align: center;font-size:120%;color:#ffd96a" *ngIf="datapresentPaid == false">
+                Data is not Available.
+            </p>
+
+            
+            <div class="d-flex justify-content-between p-2">
+                <ngb-pagination [collectionSize]="collectionSizePaid" [(page)]="pagePaid" [pageSize]="pageSizePaid" (pageChange)="onPaidPageChange($event)">
+                </ngb-pagination>
+            
+                <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize">
+                    <option [ngValue]="10">10 items per page</option>
+                    <option [ngValue]="25">25 items per page</option>
+                    <option [ngValue]="50">50 items per page</option>
+                    <option [ngValue]="75">75 items per page</option>
+                    <option [ngValue]="100">100 items per page</option>
+                </select>
+            </div>
+        </ng-template>
+    </ngb-tab>
+
+    <!-- UnPaid Users -->
+
+
+    <ngb-tab title="Unpaid" id="2">
+        <ng-template ngbTabContent>
+                <form class="searchform">
+                        <button><img src="assets/images/search.svg"></button>
+                        <input placeholder="Type here to search Users ……." type="text" name="searchTerm" [(ngModel)]="unpaidName" />
+                        <span class="ml-3" *ngIf="loadDataUnpaid$==0">Loading...</span>
+                    </form>
+                    
+                <table *ngIf="datapresentUnPaid == true" class="tabledark">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th scope="col" sortable="name" (sort)="onSort($event)">Name</th>
+                            <th scope="col" sortable="mobile" (sort)="onSort($event)">Mobile</th>
+                            <th scope="col" sortable="amount" (sort)="onSort($event)">Loan Name</th>
+                            <th scope="col" sortable="pending">Amount</th>
+                            <th scope="col">Payment Link</th>
+                            <th scope="col">Due Date</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let country of viewUnpaid | filter: unpaidName">
+                            <td>
+                              <input type="checkbox" (click)="getCollectionUserId($event,country.id)">  
+                            </td>
+                            <td>
+                                <ngb-highlight [result]="country.name" [term]="service.searchTerm"></ngb-highlight>
+                            </td>
+                            <td>
+                                <ngb-highlight [result]="country.phone " [term]="service.searchTerm"></ngb-highlight>
+                            </td>
+                            <td>
+                                <ngb-highlight [result]="country.loan_id" [term]="service.searchTerm"></ngb-highlight>
+                            </td>
+                            <td>
+                                <ngb-highlight [result]="country.amount" [term]="service.searchTerm"></ngb-highlight>
+                            </td>
+                            <td>
+                                <ngb-highlight [result]="" [term]="service.searchTerm"></ngb-highlight>
+                            </td>
+                            <td>
+                                <ngb-highlight [result]="country.due_date" [term]="service.searchTerm"></ngb-highlight><br>
+                            </td>
+                            <td>
+                                <div>
+                                    
+                                    <div ngbDropdown class="drop">
+                                        <button id="dropdownBasic1" ngbDropdownToggle><img src='assets/images/menu-icon.svg' alt=""> 
+                                            <img src='assets/images/menu-color.svg' class="menucolor"></button>
+                                        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                                                <a [routerLink]="['/single']" (click)="showDetails(country.id,country.phone)" ngbDropdownItem>View</a>
+                                            <!-- <a routerLink="/userdetails/{{ country.id }}" ngbDropdownItem>View</a> -->
+                                            <!-- <a href="#" ngbDropdownItem>Edit</a>
+                                            <a href="#" ngbDropdownItem>Delete</a> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p style="text-align: center;font-size:120%;color:#ffd96a" *ngIf="datapresentUnPaid == false">
+                    Data is not Available.
+                </p>
+                
+                <div class="d-flex justify-content-between p-2">
+                    <ngb-pagination [collectionSize]="collectionSizeUnPaid" [(page)]="pageUnPaid" [pageSize]="pageSizeUnpaid" (pageChange)="onUnpaidPageChange($event)">
+                    </ngb-pagination>
+                
+                    <select class="custom-select" style="width: auto" name="pageSize" [(ngModel)]="service.pageSize">
+                        <option [ngValue]="10">10 items per page</option>
+                        <option [ngValue]="25">25 items per page</option>
+                        <option [ngValue]="50">50 items per page</option>
+                        <option [ngValue]="75">75 items per page</option>
+                        <option [ngValue]="100">100 items per page</option>
+                    </select>
+                </div>
+        </ng-template>
+    </ngb-tab>
+
+</ngb-tabset>

@@ -1,0 +1,156 @@
+<aside>
+	<app-navbar></app-navbar>
+</aside>
+
+<div class="col-sm-12">
+    <div class="statbox">
+        <div class="searchform">
+            <button><img src="assets/images/search.svg"></button>
+            <input class="input" placeholder="Enter Value Here" type="text" [(ngModel)]="searchValue" />
+
+            <select [(ngModel)]="selectedOptn" class="blogStatus">
+                <option *ngFor="let optn of options" [value]="optn.id">{{optn.name}}</option>
+            </select>
+
+            <div class="searchbtn">
+                <button class="btn btn-dark btn-position" (click)="searchData()">Search</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="loan_loader" *ngIf="showLoader" align="center"><img src="assets/loading.gif" height="45"></div>
+
+<!--<div class="row" style="margin-top:25px" *ngIf="salesForceResponse">-->
+
+<div class="row" style="margin-top:25px" *ngIf="salesForceResponse">
+   
+           
+       
+        
+
+
+
+    <!-- <div class="col-sm-4" *ngFor="let loandata of salesForceResponse">
+                    
+            <div class="groups">
+                <div class="padding-adj">
+                    <div class="add">
+                        <div class="group1">
+                            
+                            <span>Name <br>{{loandata.First_Name}} {{loandata.Last_Name}}</span>
+                           
+                        </div>
+                        <div class="group1">
+                            <span>Loan Name <br>{{loandata.Loan_Name}}</span>
+                        </div>
+                        <div class="group1">
+                            <span>Email <br>{{loandata.Email}}</span>
+                        </div>
+                    </div>
+                    <div class="add">
+                        <div class="group1">
+                            <span>EMI Amount <br>{{loandata.EMI_Amount}}</span>
+                        </div>
+                        <div class="group1">
+                            <span>Outstanding Amount <br>{{loandata.total_outstanding_amount}}</span>
+                        </div>
+                        <div class="group1">
+                            <span>Due Date <br>{{loandata.due_date}}</span>
+                        </div>
+                    </div>
+                    <div class="add">
+                        <div class="group1 in">
+                            <span><input type="text" [(ngModel)]="loandata.Amount"></span>
+                        </div>
+                        <div class="group1 in">
+                                <span><input type="text" [(ngModel)]="loandata.SMSPhone" maxlength="13" pattern="[0-9]+"></span>
+                        </div>
+                       
+                        <div class="group1 in">
+                                <span><button class="button-bn" (click)="sendSMS(loandata.Amount,loandata.SMSPhone,loandata.First_Name, loandata.Last_Name, loandata.Email, loandata.total_outstanding_amount, loandata.due_date, loandata.Loan_Name, loandata.Mobile, loandata.EMI_Amount)">Send</button></span>
+                        </div>
+                    </div>
+                  
+                </div>
+            </div>
+    </div> -->
+         <div class="main-first">   
+    <div class="main-section" *ngFor="let loandata of salesForceResponse">
+<div class="form-group">
+    <div class="dmi">
+       <div class="left"> 
+            <h2>{{loandata.Loan_Name}}</h2>
+           </div>
+           <div class="right"> 
+               <h2>{{loandata.Status}}</h2>
+            </div>
+    </div>
+    <div class="groups">
+        <div class="grp-frm">
+<span class="yellow1">Name</span><br>
+<span class="white">{{loandata.First_Name}} {{loandata.Last_Name}}</span>
+
+            </div>
+            <div class="grp-frm">
+                    <span class="yellow1">Mobile</span><br>
+                    <span class="white">{{loandata.Mobile}}</span>
+            
+                </div>
+                <div class="grp-frm rt">
+                        <span class="yellow1">Email</span><br>
+                        <span class="white">{{loandata.Email}}</span>
+            
+                    </div>
+                    <div class="grp-frm ">
+                            <span class="yellow1">EMI</span><br>
+                            <span class="white">{{loandata.EMI_Amount}}</span>
+                
+                        </div>
+                        <div class="grp-frm ">
+                                <span class="yellow1">Total Outstanding</span><br>
+                                <span class="white">{{loandata.total_outstanding_amount}}</span>
+                    
+                            </div>
+                            <div class="grp-frm rt">
+                                    <span class="yellow1">Due Date</span><br>
+                                    <span class="white">{{loandata.due_date}}</span>
+                        
+                                </div>
+                                <div class="dmi bottom ">
+                                        <div class="left"> 
+                                             <h6>Send Payment Link</h6>
+                                            </div>
+                                            <div class="right"> 
+                                                    <img src="assets/history-yellow.svg" width="50px" height="45px" (click)="checklog(loandata.Loan_Name)">
+                                             </div>
+                                     </div>
+                         
+                                     <div class="grp-frm bttm">
+                                            <span class="yellow1">Amount</span><br>
+                                            <span class="white"><input type="text" [(ngModel)]="loandata.Amount"></span>
+                                
+                                        </div>
+                                        <div class="grp-frm bttm">
+                                                <span class="yellow1">Mobile</span><br>
+                                                <span class="white"><input type="text" [(ngModel)]="loandata.SMSPhone"></span>
+                                    
+                                            </div>
+                                            <div class="grp-frm bttm">
+                                                    
+                                                    <button class="bn" (click)="sendSMS(loandata.Amount,loandata.SMSPhone,loandata.First_Name, loandata.Last_Name, loandata.Email, loandata.total_outstanding_amount, loandata.due_date, loandata.Loan_Name, loandata.Mobile, loandata.EMI_Amount)">Send SMS</button>
+                                        
+                                                </div>
+                                             
+
+        </div>
+    </div>
+
+                    
+            
+    </div>
+
+    
+    </div>
+    </div>
+

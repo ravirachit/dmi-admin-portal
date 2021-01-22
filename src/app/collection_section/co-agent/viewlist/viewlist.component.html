@@ -1,0 +1,30 @@
+<aside>
+	<app-navbar></app-navbar>
+</aside>
+<h4 class="heading"><span>Collection List</span> <span><a routerLink="/creatlist">Create New List<img src="assets/images/add.svg"></a></span></h4>
+
+
+<div class="grid">
+    <div class="gridbox" *ngFor="let list of viewlist">
+        <h6>{{list.name}} <b><small>Created On</small>{{list.created_at | date: 'dd MMM yyyy'}}</b></h6>
+        <p>{{list.description}}</p>
+        <hr>
+        <p><span>Borrowers</span> {{list.total_users}}</p>
+        <p><span>Total Amount</span> {{list.total_amount}}</p>
+        <p><span>Pending</span> {{list.total_pending_amount}}</p>
+        <p><span>Paid</span> {{list.total_paid_amount}}</p>
+        <div class="gridfooter">
+            <!-- <a routerLink="">Send Payment Link</a> -->
+            <a routerLink="/viewdetails" class="btn-dark" (click)="sendId(list.id,list.name)">View List</a>
+            <!-- just check -->
+        </div>
+    </div>
+</div>
+
+
+<div class="d-flex justify-content-between p-2">
+    <ngb-pagination [(page)]="page" [pageSize]="pageSize" [collectionSize]="collectionSize" (pageChange)="loadPage($event)">
+    </ngb-pagination>
+</div>
+
+

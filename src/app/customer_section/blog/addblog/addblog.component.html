@@ -1,0 +1,42 @@
+<aside>
+	<app-navbar></app-navbar>
+</aside>
+<h4 class="heading"><span>Add New Blog</span> </h4>
+<div class="row">
+    <div class="col-sm-6">
+        <label>Blog Title</label>
+        <input type="text" [(ngModel)]="BlogTitle" class="input"><br><br>
+        <label>Tag</label>
+        <input type="text" [(ngModel)]="tag" class="input"><br><br>
+       <label>Blog Categories</label>
+            <select [(ngModel)]="selectedCategory" class="blogStatus" *ngIf="activeCategory">
+              <option *ngFor="let category of activeCategory.data" [value]="category.id">{{category.category_name}}</option>
+            </select><br><br>
+        <label>Sort Description</label>
+        <textarea rows="4" cols="50" maxlength="250" class="textarea_sty" [(ngModel)]="sortDesc"></textarea>
+    </div>
+
+    <div class="col-sm-6">
+            <label>Meta Name</label>
+            <input type="text" [(ngModel)]="metaName" class="input"><br><br>
+            <label>Meta Title</label>
+            <input type="text" [(ngModel)]="metaTitle" class="input"><br><br>
+            <label>Meta Description</label>
+            <input type="text" [(ngModel)]="metaDescription" class="input"><br><br>
+            <div class="image-upload blogaddImg">
+                    <label for="imageUpload">
+                        <img src="assets/images/blogimg.jpg" alt="" *ngIf="!profilePicSet" class="addblogimg">
+                        <img [src]="domSanatize.bypassSecurityTrustUrl(imagePath)" alt="" *ngIf="profilePicSet"
+                            class="addblogimg">
+                    </label><br>
+                    <input #profilePicture type="file" id="imageUpload" (change)="getProfilePic($event)"
+                        accept="image/png, image/jpeg, image/jpg" />
+                    <span>Upload Blog Image</span>
+                </div>
+    </div>
+</div>
+
+<p></p>
+<label>Description</label>
+<angular-editor [placeholder]="'Enter text here...'" [(ngModel)]="htmlContent" [config]="config"></angular-editor><br><br>
+<button type="button" class="btn-dark " (click)="proceed()">Save</button>

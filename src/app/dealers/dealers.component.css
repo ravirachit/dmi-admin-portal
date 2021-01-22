@@ -1,0 +1,47 @@
+.drop button {
+  background: transparent;
+  border: 0;
+  opacity: .6;
+  outline: none !important;
+}
+
+.drop button .menucolor {
+  display: none;
+}
+
+.drop button:after {
+  display: none;
+}
+
+.drop .dropdown-menu {
+  min-width: 6rem;
+  right: 55% !important;
+  left: auto !important;
+  background: #393737;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  color: #fff;
+  padding: 0;
+}
+
+.drop .dropdown-menu a {
+  color: #fff;
+  padding: 8px 12px;
+  font-size: 14px;
+}
+
+.drop .dropdown-menu a:hover {
+  background: #FFD96A;
+  color: #393737;
+}
+
+.show button {
+  opacity: 1;
+}
+
+.show button img {
+  display: none;
+}
+
+.show button .menucolor {
+  display: block;
+}

@@ -1,0 +1,85 @@
+<aside>
+	<app-navbar></app-navbar>
+</aside>
+<h4 class="heading"><span>Customer Details</span>
+    <!-- <span><a routerLink="/adduser">Edit <img
+                src="assets/images/edit.svg"></a></span> -->
+</h4>
+
+<div class="statbox">
+    <div class="col-sm-12" align="center" *ngIf="showSingleData">
+        <h3 class="headingColor">{{showSingleData.name}} </h3>
+        <span class="userDetail"> {{showSingleData.phone}} </span><br>
+        <span class="userDetail"> {{showSingleData.email}} </span>
+    </div>
+</div>
+
+<h4 class="heading"><span>History</span></h4>
+
+<div class="statbox" *ngIf="showSingleData">
+    <div class="row col-sm-12 detailRow">
+        <div class="row col-sm-6 detailRow">
+            <div class="col-sm-10 headingValues">
+                <span>EMI Amount</span><br>
+                <span>Order ID</span><br>
+                <span>Loan ID</span><br>
+                <span>Paid Amount</span><br>
+                <span>Payment Status</span><br>
+                <span>Total Outstanding Amount</span><br>
+                <span>Due Date</span><br>
+                <span>Created At</span><br>
+                <span>Payment Link</span><br>
+                <span>Payment Link Creation Date</span><br>
+                <span>Reminder SMS Date</span><br>
+            </div>
+            <div class="col-sm-2 colons" align="right">
+                    <span>:</span><br>
+                    <span>:</span><br>
+                    <span>:</span><br>
+                    <span>:</span><br>
+                    <span>:</span><br>
+                    <span>:</span><br>
+                    <span>:</span><br>
+                    <span>:</span><br>
+                    <span>:</span><br>
+                    <span>:</span><br>
+                    <span>:</span><br>
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            <div class="col-sm-8 det_values">
+                <span *ngIf="showSingleData.amount != '' || showSingleData.amount != null">{{showSingleData.amount}}</span><span *ngIf="showSingleData.amount == '' || showSingleData.amount == null">-</span><br>
+                <span *ngIf="showSingleData.order_id != '' || showSingleData.order_id != null">{{showSingleData.order_id}}</span><span *ngIf="showSingleData.order_id == '' || showSingleData.order_id == null">-</span><br>
+                <span *ngIf="showSingleData.loan_id != '' || showSingleData.loan_id != null">{{showSingleData.loan_id}}</span><span *ngIf="showSingleData.loan_id == '' || showSingleData.loan_id == null">-</span><br>
+                
+                <span *ngIf="(showSingleData.payment_link != '' || showSingleData.payment_link != null) && (showSingleData.other_amount != '' || showSingleData.other_amount != null)">{{showSingleData.other_amount}}</span>
+                <span *ngIf="(showSingleData.payment_link != '' || showSingleData.payment_link != null) && (showSingleData.other_amount == '' || showSingleData.other_amount == null)">{{showSingleData.amount}}</span><span *ngIf="showSingleData.payment_link == '' || showSingleData.payment_link == null">-</span><br>
+                
+                <span *ngIf="showSingleData.recieve_payment == 1">Paid</span><span *ngIf="showSingleData.recieve_payment == 2">UnPaid</span><br>
+                <span *ngIf="showSingleData.total_outstanding_amount != '' || showSingleData.total_outstanding_amount != null">{{showSingleData.total_outstanding_amount}}</span><span *ngIf="showSingleData.total_outstanding_amount == '' || showSingleData.total_outstanding_amount == null">-</span><br>
+                <span *ngIf="showSingleData.due_date != '' || showSingleData.due_date != null">{{showSingleData.due_date}}</span><span *ngIf="showSingleData.due_date == '' || showSingleData.due_date == null">-</span><br>
+                <span *ngIf="showSingleData.created_at != '' || showSingleData.created_at != null">{{showSingleData.created_at}}</span><span *ngIf="showSingleData.created_at == '' || showSingleData.created_at == null">-</span><br>
+                <span *ngIf="showSingleData.payment_link != '' || showSingleData.payment_link != null">{{showSingleData.payment_link}}</span><span *ngIf="showSingleData.payment_link == '' || showSingleData.payment_link == null">-</span><br>
+                
+                <span *ngIf="(showSingleData.payment_link != '' || showSingleData.payment_link != null) && (showSingleData.payment_link_creation_date != '' || showSingleData.payment_link_creation_date != null)">{{showSingleData.payment_link_creation_date}}</span><span *ngIf="(showSingleData.payment_link != '' || showSingleData.payment_link != null) && (showSingleData.payment_link_creation_date == '' || showSingleData.payment_link_creation_date == null)">-</span>
+                <span *ngIf="(showSingleData.payment_link == '' || showSingleData.payment_link == null) && (showSingleData.payment_link_creation_date == '' || showSingleData.payment_link_creation_date == null)">-</span><br>
+                
+                <span *ngIf="showSingleData.reminder_sms_date != '' || showSingleData.reminder_sms_date != null">{{showSingleData.reminder_sms_date}}</span><span *ngIf="showSingleData.reminder_sms_date == '' || showSingleData.reminder_sms_date == null">-</span><br>
+            </div>
+        </div>
+    </div>
+
+    <!-- <ul style="padding-top:10px;">
+        <li>
+            Amount : &nbsp;&nbsp;{{showSingleData.amount}}<br>
+            Created At : &nbsp;&nbsp;{{showSingleData.created_at}}<br>
+            Payment Link : &nbsp;&nbsp;{{showSingleData.payment_link}}<br>
+            Sent SMS : &nbsp;&nbsp;{{showSingleData.send_sms}}<br>
+            Received Payments : &nbsp;&nbsp;{{showSingleData.recieve_payment}}<br>
+            Order ID : &nbsp;&nbsp;{{showSingleData.order_id}}<br>
+            Due Date : &nbsp;&nbsp;{{showSingleData.due_date}}<br>
+            Reminder SMS Date : &nbsp;&nbsp;{{showSingleData.reminder_sms_date}}<br>
+        </li>
+    </ul> -->
+</div>
